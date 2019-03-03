@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/AzurelabTypeFabric" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="Server_InstanceCount" Value="-1" />
+    <Parameter Name="API_InstanceCount" Value="-1" />
+    <Parameter Name="CarAPI_ApiUrl" Value="http://companyvehiclesfabric.northeurope.cloudapp.azure.com:83/" />
+  </Parameters>
+</Application>

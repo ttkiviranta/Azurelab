@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<license type="Personal" DeploymentType="SaaS/Internal Use" Quantity="1" Edition="Enterprise" Applications="All" RenewalType="Subscription" expiration="2018-08-17" id="73d7a2c9-e9aa-4546-96c0-df903ef51b48">
+  <name>gunnar.sireus@itancan.com</name>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>ZEVkQPEDacljN8qwH7Z5WvZC+CU=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>ln75HQmdfoaEIhRFNg5rPaXiTduL/nf2zYYGLjte+p+f+LErILLE5iyMe9H+2QA0rxweF6fFhwFTcAyCQ3JY1dJjDW0bkn8e/SbKicsUTJiCyz+/bfNgJGcT9j3yMfyyCXhxJB+c9IkCih3NE90Ef2+spgg5YORmTR3wREVo7w0=</SignatureValue>
+  </Signature>
+</license>
