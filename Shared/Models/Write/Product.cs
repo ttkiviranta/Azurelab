@@ -10,15 +10,15 @@ namespace Shared.Models.Write
 {
     public class Product
     {
-        public Product()
-        {
+  //      public Product()
+  //      {
             //   CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
             //   Id = Guid.NewGuid();
-        }
-        public Product(Guid productId) : this()
-        {
+    //    }
+   //     public Product(Guid productId) : this()
+   //     {
             //  ProductId = productId;
-        }
+   //     }
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }

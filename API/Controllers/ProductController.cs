@@ -50,6 +50,7 @@ namespace API.Controllers
             return _dataAccessRead.GetProducts();
         }
 
+        
     }
 
 }

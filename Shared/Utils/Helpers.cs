@@ -84,14 +84,17 @@ namespace Shared.Utils
         public static string GetSqlConnection()
         {
             //  return "Server=tcp:sireusdbserver.database.windows.net,1433;Initial Catalog=carnbus;Persist Security Info=False;User ID=sireus;Password=GS1@azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            return @"Server=tcp:localhost\MSSQLSERVER01.database.windows.net,1433;Initial Catalog=Homelab;Persist Security Info=False;User ID=OMISTAJA;Password=Timoki10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=60;";
+            //    return @"Server=tcp:DESKTOP-HMTP7MB\MSSQLSERVER01.database.windows.net,1433;Initial Catalog=Homelab;Persist Security Info=False;User ID=OMISTAJA;Password=Timoki10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //   return @"Server=tcp:DESKTOP-HMTP7MB\MSSQLSERVER01;Initial Catalog=Homelab;Persist Security Info=False;User ID=OMISTAJA;Password=Timoki10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            return "Server=DESKTOP-HMTP7MB\\MSSQLSERVER01;Initial Catalog=Homelab;Persist Security Info=False;User ID=OMISTAJA;Password=Timoki10;Connection Timeout=30;";
             //  return @"Server=localhost\MSSQLSERVER01;Database=Homelab;Trusted_Connection=True;ConnectRetryCount=0";
         }
 
         public static string GetAspNetDbConnection()
         {
             //return "Server=tcp:sireusdbserver.database.windows.net,1433;Initial Catalog=aspnetdb;Persist Security Info=False;User ID=sireus;Password=GS1@azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            return @"Server=tcp:localhost\MSSQLSERVER01.database.windows.net,1433;Initial Catalog=aspnetdb;Persist Security Info=False;User ID=OMISTAJA;Password=Timoki10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=60;";
+            // return @"Server=tcp:DESKTOP-HMTP7MB\MSSQLSERVER01.database.windows.net;Initial Catalog=Homelab;Persist Security Info=False;User ID=OMISTAJA;Password=Timoki10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            return @"Server=tcp:DESKTOP-HMTP7MB\MSSQLSERVER01;Initial Catalog=Homelab;Persist Security Info=False;User ID=OMISTAJA;Password=Timoki10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         }
 
         public static string GetStorageConnection()

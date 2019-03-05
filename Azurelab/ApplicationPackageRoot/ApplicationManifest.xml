@@ -36,4 +36,12 @@
       </StatelessService>
     </Service>
   </DefaultServices>
+  <Principals>
+    <Users>
+      <User Name="AcctToUse" AccountType="DomainUser" AccountName="DESKTOP-HMTP7MB\OMISTAJA" Password="Timoki10" />
+    </Users>
+  </Principals>
+  <Policies>
+    <DefaultRunAsPolicy UserRef="AcctToUse" />
+  </Policies>
 </ApplicationManifest>
