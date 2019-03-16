@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Write\" />
     <Folder Include="Areas\Read\" />
+    <Folder Include="Areas\Write\Controllers\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 

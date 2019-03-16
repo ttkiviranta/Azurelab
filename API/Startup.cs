@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
@@ -38,8 +39,8 @@ namespace API
             services.AddSingleton(EndpointInstance);
             services.AddSingleton(EndpointInstancePriority);
             services.AddSingleton(Configuration);
-            services.AddMvc();
-
+             services.AddMvc();
+           
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {

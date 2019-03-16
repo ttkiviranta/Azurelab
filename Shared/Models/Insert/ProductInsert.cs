@@ -8,25 +8,26 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Shared.Models.Write
+namespace Shared.Models.Insert
 {
-    [Table("Product", Schema = "Production")]
-    public class Product
+  //  [Table("Product", Schema = "Production")]
+    public class ProductInsert
     {
-        public Product()
+        public ProductInsert()
         {
-            //   CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
-            Rowguid = Guid.NewGuid();
-           
+            // CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
+            this.Rowguid = Guid.NewGuid();
+            
         }
 
-        public Product(Guid rowguid) : this()
-        {
-            Rowguid = rowguid;
-        }
+        //      public ProductInsert(Guid rowguid) : this()
+        //     {
+        //         Rowguid = rowguid;
+        //        }
+
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-   //     [Key]
+        [Key]
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -51,14 +52,17 @@ namespace Shared.Models.Write
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
    //     [Key]
-        public Guid Rowguid { get; set; }
+        public Guid Rowguid {
+            get; set;
+        }
         public DateTime? ModifiedDate { get; set; }
         private string userIdentifier;
         public string UserIdentifier
         {
-            get { return userIdentifier ?? "Timooo"; }
+            get { return userIdentifier ?? "Timooo!!!"; }
 
             set { userIdentifier = value; }
         }
     }
 }
+

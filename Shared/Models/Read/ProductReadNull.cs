@@ -1,32 +1,25 @@
 ﻿using System;
-//using System.ComponentModel.DataAnnotations;
-using System.Globalization;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
-namespace Shared.Models.Write
+namespace Shared.Models.Read
 {
-    [Table("Product", Schema = "Production")]
-    public class Product
+    public class ProductReadNull
     {
-        public Product()
+        public ProductReadNull()
         {
-            //   CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
+            // CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
             Rowguid = Guid.NewGuid();
-           
-        }
 
-        public Product(Guid rowguid) : this()
+        }
+        public ProductReadNull(Guid rowguid) : this()
         {
             Rowguid = rowguid;
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-   //     [Key]
+        [Key]
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -50,7 +43,7 @@ namespace Shared.Models.Write
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-   //     [Key]
+       // [Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
         private string userIdentifier;

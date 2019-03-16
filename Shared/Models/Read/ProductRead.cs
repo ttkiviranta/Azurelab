@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 using System.Globalization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Models.Read
 {
@@ -10,12 +12,13 @@ namespace Shared.Models.Read
         {
             // CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
             Rowguid = Guid.NewGuid();
+          
         }
         public ProductRead(Guid rowguid) : this()
         {
             Rowguid = rowguid;
         }
-     
+        [Key]
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -39,7 +42,7 @@ namespace Shared.Models.Read
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-        [Key]
+        //[Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
         private string userIdentifier;
@@ -49,5 +52,7 @@ namespace Shared.Models.Read
 
             set { userIdentifier = value; }
         }
+        public bool? Deleted { get; set; }
+        public long ChangeTimeStamp { get; set; }
     }
 }

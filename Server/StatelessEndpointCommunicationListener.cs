@@ -32,24 +32,25 @@ namespace Server
                     options.UseSqlServer(Helpers.GetSqlConnection()));
 
             var builder = new ContainerBuilder();
+          
             builder.Populate(Services);
-     /*       builder.RegisterType<CreateCarHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<CreateCarLockedStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<CreateCarOnlineStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<CreateCarSpeedHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);*/
+            builder.RegisterType<CreateProductHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+  //*          builder.RegisterType<CreateProductLockedStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+  //*          builder.RegisterType<CreateProductOnlineStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+ //*           builder.RegisterType<CreateProductSpeedHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
      //       builder.RegisterType<CreateCompanyHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-        /*    builder.RegisterType<CreateCompanyNameHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<CreateCompanyAddressHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<DeleteCarHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);*/
+     //       builder.RegisterType<CreateCompanyNameHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+     //       builder.RegisterType<CreateCompanyAddressHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+ //*           builder.RegisterType<DeleteCarHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
     //        builder.RegisterType<DeleteCompanyHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-          /*  builder.RegisterType<UpdateCarLockedStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<UpdateCarOnlineStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<UpdateCarSpeedHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<UpdateCompanyAddressHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<UpdateCompanyNameHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);*/
+  //*          builder.RegisterType<UpdateCarLockedStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+  //*          builder.RegisterType<UpdateCarOnlineStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+  //*          builder.RegisterType<UpdateCarSpeedHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+     //       builder.RegisterType<UpdateCompanyAddressHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+     //       builder.RegisterType<UpdateCompanyNameHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
             builder.RegisterType<ClearDatabaseHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder); 
             Container = builder.Build();
-
+        //    Services.AddMvc(); //Tarviiko???
             var endpointName = Helpers.ServerEndpoint;
             var endpointConfiguration = Helpers.CreateEndpoint(endpointName, Server.GetPathToData());
             endpointConfiguration.UseContainer<AutofacBuilder>(

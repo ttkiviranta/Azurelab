@@ -20,6 +20,8 @@ namespace Server.DAL
             //_optionsBuilder.UseSqlite("DataSource=" + Helpers.GetDbLocation(Configuration["AppSettings:DbLocation"]) + "Car.db");
             _optionsBuilder.UseSqlServer(Helpers.GetSqlConnection());
         }
+
+        
         IConfiguration Configuration { get; set; }
 
         private readonly DbContextOptionsBuilder<ApiContext> _optionsBuilder = new DbContextOptionsBuilder<ApiContext>();
@@ -40,9 +42,9 @@ namespace Server.DAL
                     {
                         ProductReads.Add(new ProductRead(ProductReadNull.Rowguid)
                         {
+                            Name = ProductReadNull.Name,
                             ProductId = ProductReadNull.ProductId,
-                            ProductNumber = ProductReadNull.ProductNumber,
-
+                            ProductNumber = ProductReadNull.ProductNumber,                           
                         });
                     }
                 }
@@ -50,6 +52,40 @@ namespace Server.DAL
                 return ProductReads;
             }
      
-        }  
+        }
+
+        public ProductRead GetProduct(Guid rowquid)
+        {
+            ProductRead productRead = null;
+            using (var context = new ApiContext(_optionsBuilder.Options))
+            {
+                var productReadNull = context.Product.Where(c => c.Rowguid == rowquid);
+                foreach (var ProductReadNull in productReadNull)
+                {
+
+                    productRead = new ProductRead(rowquid)
+                    {
+                        Name = ProductReadNull.Name,
+                        ProductId = ProductReadNull.ProductId,
+                        ProductNumber = ProductReadNull.ProductNumber,
+                    };
+
+                }
+                /* if (productReadNull != null)
+                 {
+                     productRead = new ProductRead(rowquid)
+                     {
+                         Name = productRead.Name,
+                         ProductId = productRead.ProductId,
+                         ProductNumber = productRead.ProductNumber,
+
+                     };
+                 }*/
+
+                return productRead;
+            }
+
+        }
+
     }
 }
