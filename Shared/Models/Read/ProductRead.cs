@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Models.Read
 {
-    public class ProductRead
+    public partial class ProductRead
     {
         public ProductRead()
         {
@@ -19,7 +19,7 @@ namespace Shared.Models.Read
             Rowguid = rowguid;
         }
         [Key]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
         public bool? MakeFlag { get; set; }
@@ -54,5 +54,7 @@ namespace Shared.Models.Read
         }
         public bool? Deleted { get; set; }
         public long ChangeTimeStamp { get; set; }
+
+        public ProductModel ProductModel { get; set; }
     }
 }

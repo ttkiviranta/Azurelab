@@ -17,7 +17,7 @@ namespace Shared.Messages.Commands
             Rowguid = Guid.NewGuid();
         }
         [Key]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
         public bool? MakeFlag { get; set; }

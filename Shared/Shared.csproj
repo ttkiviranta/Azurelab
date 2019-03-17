@@ -47,8 +47,12 @@
     <Compile Include="Messages\Events\ClearDatabase.cs" />
     <Compile Include="Models\Insert\ProductInsert.cs" />
     <Compile Include="Models\Insert\Testi.cs" />
+    <Compile Include="Models\Read\ProductCategory.cs" />
+    <Compile Include="Models\Read\ProductModel.cs" />
     <Compile Include="Models\Read\ProductRead.cs" />
     <Compile Include="Models\Read\ProductReadNull.cs" />
+    <Compile Include="Models\Read\ProductSubcategory.cs" />
+    <Compile Include="Models\Read\UnitMeasure.cs" />
     <Compile Include="Models\Write\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Helpers.cs" />

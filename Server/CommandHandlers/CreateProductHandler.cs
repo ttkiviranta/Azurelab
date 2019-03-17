@@ -99,42 +99,66 @@ namespace Server.CommandHandlers
             productNumberParam.Value = product.ProductNumber;
             makeFlagParam.Value = product.MakeFlag;
             finishedGoodsFlagParam.Value = product.FinishedGoodsFlag;
+
             colorParam.Value = product.Color;
             if (colorParam.Value == null)
                 colorParam.Value = DBNull.Value;
+
             safetyStockLevelParam.Value = product.SafetyStockLevel;
             reorderPointParam.Value = product.ReorderPoint;
             standardCostParam.Value = product.StandardCost;
             listPriceParam.Value = product.ListPrice;
+
             sizeParam.Value = product.Size;
             if (sizeParam.Value == null)
                 sizeParam.Value = DBNull.Value;
+
             sizeUnitMeasureCodeParam.Value = product.SizeUnitMeasureCode;
             if (sizeUnitMeasureCodeParam.Value == null)
                 sizeUnitMeasureCodeParam.Value = DBNull.Value;
+
             weightUnitMeasureCodeParam.Value = product.WeightUnitMeasureCode;
             if (weightUnitMeasureCodeParam.Value == null)
                 weightUnitMeasureCodeParam.Value = DBNull.Value;
+
             weightParam.Value = product.Weight;
             if (weightParam.Value == null)
                 weightParam.Value = DBNull.Value;
             daysToManufactureParam.Value = product.DaysToManufacture;
+
             productLineParam.Value = product.ProductLine;
             if (productLineParam.Value == null)
                 productLineParam.Value = DBNull.Value;
+
             classParam.Value = product.Class;
             if (classParam.Value == null)
                 classParam.Value = DBNull.Value;
+
             styleParam.Value = product.Style;
             if (styleParam.Value == null)
                 styleParam.Value = DBNull.Value;
+
             productSubcategoryIdParam.Value = product.ProductSubcategoryId;
+            if (productSubcategoryIdParam.Value == null)
+                productSubcategoryIdParam.Value = DBNull.Value;
+
             productModelIdParam.Value = product.ProductModelId;
+            if (productModelIdParam.Value == null)
+                productModelIdParam.Value = DBNull.Value;
+
             sellStartDateParam.Value = product.SellStartDate;
+
             sellEndDateParam.Value = product.SellEndDate;
+            if (sellEndDateParam.Value == null)
+                sellEndDateParam.Value = DBNull.Value;
+
             discontinuedDateParam.Value = product.DiscontinuedDate;
+            if (discontinuedDateParam.Value == null)
+                discontinuedDateParam.Value = DBNull.Value;
+
             rowguidParam.Value = Guid.NewGuid(); //product.Rowguid;  
             modifiedDateParam.Value = DateTime.Today; //product.ModifiedDate;
+
             userIdentifierParam.Value = product.UserIdentifier;
             if (userIdentifierParam.Value == null)
                 userIdentifierParam.Value = DBNull.Value;

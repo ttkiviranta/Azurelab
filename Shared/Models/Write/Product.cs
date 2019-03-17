@@ -7,11 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Shared.Models.Read;
 
 namespace Shared.Models.Write
 {
     [Table("Product", Schema = "Production")]
-    public class Product
+    public partial class Product
     {
         public Product()
         {
@@ -27,7 +28,7 @@ namespace Shared.Models.Write
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
    //     [Key]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
         public bool? MakeFlag { get; set; }
@@ -60,5 +61,10 @@ namespace Shared.Models.Write
 
             set { userIdentifier = value; }
         }
+
+        public ProductModel ProductModel { get; set; }
+        public ProductSubcategory ProductSubcategory { get; set; }
+        public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
+        public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
     }
 }

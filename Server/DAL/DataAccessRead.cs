@@ -44,7 +44,31 @@ namespace Server.DAL
                         {
                             Name = ProductReadNull.Name,
                             ProductId = ProductReadNull.ProductId,
-                            ProductNumber = ProductReadNull.ProductNumber,                           
+                            ProductNumber = ProductReadNull.ProductNumber,
+
+                            Rowguid = ProductReadNull.Rowguid,
+                            Class =ProductReadNull.Class,
+                            Color =ProductReadNull.Color,
+                            DaysToManufacture =ProductReadNull.DaysToManufacture,
+                            DiscontinuedDate =ProductReadNull.DiscontinuedDate,
+                            FinishedGoodsFlag =ProductReadNull.FinishedGoodsFlag,
+                            ListPrice =ProductReadNull.ListPrice,
+                            MakeFlag =ProductReadNull.MakeFlag,
+                            ModifiedDate =ProductReadNull.ModifiedDate,
+                            ProductLine =ProductReadNull.ProductLine,
+                            ProductModelId =ProductReadNull.ProductModelId,
+                            ProductSubcategoryId =ProductReadNull.ProductSubcategoryId,
+                            ReorderPoint =ProductReadNull.ReorderPoint,
+                            SafetyStockLevel =ProductReadNull.SafetyStockLevel,
+                            SellEndDate =ProductReadNull.SellEndDate,
+                            SellStartDate =ProductReadNull.SellStartDate,
+                            Size =ProductReadNull.Size,
+                            SizeUnitMeasureCode =ProductReadNull.SizeUnitMeasureCode,
+                            StandardCost =ProductReadNull.StandardCost,
+                            Style =ProductReadNull.Style,
+                            UserIdentifier =ProductReadNull.UserIdentifier,
+                            Weight =ProductReadNull.Weight,
+                            WeightUnitMeasureCode =ProductReadNull.WeightUnitMeasureCode
                         });
                     }
                 }
@@ -68,6 +92,30 @@ namespace Server.DAL
                         Name = ProductReadNull.Name,
                         ProductId = ProductReadNull.ProductId,
                         ProductNumber = ProductReadNull.ProductNumber,
+
+                        Rowguid = new Guid(),
+                        Class = ProductReadNull.Class,
+                        Color = ProductReadNull.Color,
+                        DaysToManufacture = ProductReadNull.DaysToManufacture,
+                        DiscontinuedDate = ProductReadNull.DiscontinuedDate,
+                        FinishedGoodsFlag = ProductReadNull.FinishedGoodsFlag,
+                        ListPrice = ProductReadNull.ListPrice,
+                        MakeFlag = ProductReadNull.MakeFlag,
+                        ModifiedDate = ProductReadNull.ModifiedDate,
+                        ProductLine = ProductReadNull.ProductLine,
+                        ProductModelId = ProductReadNull.ProductModelId,
+                        ProductSubcategoryId = ProductReadNull.ProductSubcategoryId,
+                        ReorderPoint = ProductReadNull.ReorderPoint,
+                        SafetyStockLevel = ProductReadNull.SafetyStockLevel,
+                        SellEndDate = ProductReadNull.SellEndDate,
+                        SellStartDate = ProductReadNull.SellStartDate,
+                        Size = ProductReadNull.Size,
+                        SizeUnitMeasureCode = ProductReadNull.SizeUnitMeasureCode,
+                        StandardCost = ProductReadNull.StandardCost,
+                        Style = ProductReadNull.Style,
+                        UserIdentifier = ProductReadNull.UserIdentifier,
+                        Weight = ProductReadNull.Weight,
+                        WeightUnitMeasureCode = ProductReadNull.WeightUnitMeasureCode
                     };
 
                 }
