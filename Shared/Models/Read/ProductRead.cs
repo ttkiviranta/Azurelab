@@ -11,7 +11,7 @@ namespace Shared.Models.Read
         public ProductRead()
         {
             // CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
-            Rowguid = Guid.NewGuid();
+            Rowguid = Guid.NewGuid(); //poista tämä ???
           
         }
         public ProductRead(Guid rowguid) : this()
@@ -52,9 +52,9 @@ namespace Shared.Models.Read
 
             set { userIdentifier = value; }
         }
-        public bool? Deleted { get; set; }
-        public long ChangeTimeStamp { get; set; }
+   //     public bool? Deleted { get; set; }
+   //     public long ChangeTimeStamp { get; set; }
 
-        public ProductModel ProductModel { get; set; }
+    //    public ProductModel ProductModel { get; set; }
     }
 }

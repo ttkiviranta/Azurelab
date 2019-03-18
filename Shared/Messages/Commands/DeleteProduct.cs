@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace Shared.Messages.Commands
 {
     [Table("Product", Schema = "Production")]
-    public class UpdateProduct
+    public class DeleteProduct
     {
-        public UpdateProduct()
+        public DeleteProduct()
         {
             //   CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
-          //  Rowguid = Guid.NewGuid();
+            //  Rowguid = Guid.NewGuid();
         }
         [Key]
         public long ProductId { get; set; }
@@ -40,15 +40,9 @@ namespace Shared.Messages.Commands
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-     //   [Key]
+        //   [Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        private string userIdentifier;
-        public string UserIdentifier
-        {
-            get { return userIdentifier ?? "Timooo"; }
-
-            set { userIdentifier = value; }
-        }
+        public string UserIdentifier { get; set; }      
     }
 }

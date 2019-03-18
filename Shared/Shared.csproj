@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Messages\Commands\CreateProduct.cs" />
+    <Compile Include="Messages\Commands\DeleteProduct.cs" />
     <Compile Include="Messages\Commands\UpdateProduct.cs" />
     <Compile Include="Messages\Events\ClearDatabase.cs" />
     <Compile Include="Models\Insert\ProductInsert.cs" />
