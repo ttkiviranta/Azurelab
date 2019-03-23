@@ -58,9 +58,9 @@ namespace API.Controllers
 
         // GET api/Product/5
         [HttpGet("{id}")]
-        public ProductRead GetProduct(string id)
+        public ProductRead GetProduct(long id)
         {
-            return _dataAccessRead.GetProduct(new Guid(id));
+            return _dataAccessRead.GetProduct(id);
         }
 
 

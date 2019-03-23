@@ -14,10 +14,16 @@ namespace Shared.Models.Read
             Rowguid = Guid.NewGuid(); //poista tämä ???
           
         }
-        public ProductRead(Guid rowguid) : this()
+     /*   public ProductRead(Guid rowguid) : this()
         {
             Rowguid = rowguid;
+        }*/
+
+        public ProductRead(long productId)
+        {
+            ProductId = productId;
         }
+
         [Key]
         public long ProductId { get; set; }
         public string Name { get; set; }
@@ -52,9 +58,14 @@ namespace Shared.Models.Read
 
             set { userIdentifier = value; }
         }
+    //    public string ProductModelName { get; set; }
+    //    public string ProductSubcategoryName { get; set; }
    //     public bool? Deleted { get; set; }
    //     public long ChangeTimeStamp { get; set; }
 
-    //    public ProductModel ProductModel { get; set; }
+        public ProductModel ProductModel { get; set; }
+        public ProductSubcategory ProductSubcategory { get; set; }
+        public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
+        public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
     }
 }

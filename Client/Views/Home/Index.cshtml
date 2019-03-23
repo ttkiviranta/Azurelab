@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Azure Service Fabric - Azurelab";
+}
+<div ng-controller="AzurelabAppController" ng-init="refresh()">
+    <div class="container">
+        <div class="row top-buffer" style="background-color: #e8e8e8; padding: 10px">
+            <div class="col-12">
+                <div class="text-center">
+                    <img src="/images/Azure_216 blue.svg" style="height: 100px; margin-right: 50px">
+                    <img src="/images/ServiceFabricMesh.svg" style="height: 90px; margin-left: 50px">
+                    <h2 style="color: rgb(50, 50, 50)">
+                        Azurelab using Azure Service Fabric
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer border col-10">
+            <div class="row">
+                <div class="col-4 offset-1">
+                    <span id="statusText" />
+                </div>
+                <div class="col-5 offset-2">
+                    Get the code here:<br />
+                    <a href="https://github.com/Azure/service-fabric-mesh-preview-pr">https://github.com/Azure/service-fabric-mesh-preview-pr</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

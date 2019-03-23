@@ -96,7 +96,7 @@ namespace Server.DAL
 
                 entity.Property(e => e.WeightUnitMeasureCode).HasColumnType("nchar(3)");
 
-                /*        entity.HasOne(d => d.ProductModel)
+                        entity.HasOne(d => d.ProductModel)
                             .WithMany(p => p.Product)
                             .HasForeignKey(d => d.ProductModelId);
 
@@ -110,7 +110,7 @@ namespace Server.DAL
 
                         entity.HasOne(d => d.WeightUnitMeasureCodeNavigation)
                             .WithMany(p => p.ProductWeightUnitMeasureCodeNavigation)
-                            .HasForeignKey(d => d.WeightUnitMeasureCode);*/
+                            .HasForeignKey(d => d.WeightUnitMeasureCode);
             });
         }
     }

@@ -14,6 +14,11 @@ namespace Shared.Models.Read
             Product = new HashSet<Product>();
         }
 
+        public ProductSubcategory(int productSubcategoryId)
+        {
+            ProductSubcategoryId = productSubcategoryId;
+        }
+
         public int ProductSubcategoryId { get; set; }
         public int ProductCategoryId { get; set; }
         public string Name { get; set; }
