@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace API.Areas.Read.Controllers
 {
-    [Route("")]
+ /*   [Route("")]
     public class DefaultController : Controller
     {
         [Route(""), HttpGet]
@@ -23,7 +23,7 @@ namespace API.Areas.Read.Controllers
         {
             return Redirect("/swagger/");
         }
-    }
+    }*/
     [Route("api/read/[controller]")]
     [ApiController]
     public class SubcategoryController : Controller

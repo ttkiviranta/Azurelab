@@ -8,7 +8,8 @@ namespace Client.Models.ProductViewModel
     public class ProductViewModel 
     {
         public List<Product> Products { get; set; }
-     //   public List<ProductModel> ProductModels { get; set; }
+        public List<ProductModel> ProductModels { get; set; }
+        public List<ProductCategory> ProductCategories { get; set; }
         public List<ProductSubcategory> ProductSubcategories { get; set; }
     }
 }

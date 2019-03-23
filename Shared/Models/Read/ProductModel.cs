@@ -15,9 +15,9 @@ namespace Shared.Models.Read
             Product = new HashSet<Product>();
         }
 
-        public ProductModel(string name)
+        public ProductModel(int productModelId)
         {
-            Name = name;
+            ProductModelId = productModelId;
         }
 
         public int ProductModelId { get; set; }

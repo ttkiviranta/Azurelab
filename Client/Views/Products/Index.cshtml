@@ -52,32 +52,77 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Products)
+        @for (var i = 0; i < Model.Products.Count; i++)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StandardCost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ListPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductModel.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductSubcategory.Name)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Products[i].Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Products[i].ProductNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Products[i].StandardCost)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Products[i].ListPrice)
+            </td>
+
+           
+                @if (@Model.Products[i].ProductModelId != null)
+                {
+
+                    @for (var j = 0; j < Model.ProductModels.Count; j++)
+                    {
+
+                        if (@Model.Products[i].ProductModelId == @Model.ProductModels[j].ProductModelId)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => model.ProductModels[j].Name)
+                            </td>
+                        }
+                    }
+                }
+
+
+                @if (@Model.Products[i].ProductModelId == null)
+                {
+
+                    <td>
+                        @Html.DisplayFor(model => model.Products[i].ProductModelId)
+                    </td>
+
+                }
+                
+
+                @if (@Model.Products[i].ProductSubcategoryId != null)
+                {
+
+                    @for (var j = 0; j < Model.ProductSubcategories.Count; j++)
+                    {
+
+                        if (@Model.Products[i].ProductSubcategoryId == @Model.ProductSubcategories[j].ProductSubcategoryId)
+                        {
+                            <td>
+                                @Html.DisplayFor(model => model.ProductSubcategories[j].Name)
+                            </td>
+                        }
+                    }
+                }
+
+                @if (@Model.Products[i].ProductSubcategoryId == null)
+                {
+
+                    <td>
+                        @Html.DisplayFor(model => model.Products[i].ProductSubcategoryId)
+                    </td>
+
+                }
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>                  
+                    <a asp-action="Edit" asp-route-id="@Model.Products[i].ProductId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@Model.Products[i].ProductId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.Products[i].ProductId">Delete</a>
                 </td>
             </tr>
         }

@@ -32,20 +32,27 @@
 
             List<Product> products;
             List<ProductSubcategory> subcategories;
+            List<ProductCategory> categories;
+            List<ProductModel> models;
 
             try
             {
                 products = await Utils.Get<List<Product>>("api/Product", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+                subcategories = await Utils.Get<List<ProductSubcategory>>("/api/read/Subcategory", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+                categories = await Utils.Get<List<ProductCategory>>("/api/read/Category", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+                models = await Utils.Get<List<ProductModel>>("/api/read/Model", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             }
             catch
             {
-                TempData["CustomError"] = "No contact with server! CompanyVehiclesAPI must be started before Client could start!";
+                TempData["CustomError"] = "No contact with server! AzurelabAPI must be started before Client could start!";
                 return View(new ProductViewModel { Products = new List<Product>() });
             }
 
-                subcategories = await Utils.Get<List<ProductSubcategory>>("/api/read/Subcategory", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+             //   subcategories = await Utils.Get<List<ProductSubcategory>>("/api/read/Subcategory", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+            //    categories = await Utils.Get<List<ProductCategory>>("/api/read/Category", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+            //    models = await Utils.Get<List<ProductModel>>("/api/read/Model", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
 
-            var productViewModel = new ProductViewModel { Products = products, ProductSubcategories = subcategories };
+            var productViewModel = new ProductViewModel { Products = products, ProductSubcategories = subcategories, ProductCategories = categories, ProductModels = models };
             return View(productViewModel);
         }
     }

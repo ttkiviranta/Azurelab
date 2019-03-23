@@ -13,6 +13,6 @@ namespace Server.DAL
             : base(options)
         {
         }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
+     //   public DbSet<ProductCategory> ProductCategories { get; set; }
     }
 }
