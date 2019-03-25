@@ -119,11 +119,11 @@
 
                 }
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@Model.Products[i].ProductId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@Model.Products[i].ProductId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@Model.Products[i].ProductId">Delete</a>
-                </td>
+                    <td>
+                        <a href="/Products/Edit/@Model.Products[i].ProductId">Edit</a> @Html.Raw("|")
+                        <a href="/Products/Details/@Model.Products[i].ProductId">Details</a> @Html.Raw("|")
+                        <a href="/Products/Delete/@Model.Products[i].ProductId">Delete</a>
+                    </td>
             </tr>
         }
     </tbody>

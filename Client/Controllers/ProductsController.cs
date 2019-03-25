@@ -10,8 +10,8 @@
     using Client.Models.ProductViewModel;
     using Microsoft.AspNetCore.Http;
 
-    [Produces("application/json")]
-    [Route("api/Products")]
+ //   [Produces("application/json")]
+ //   [Route("api/Products")]
 
     public class ProductsController : Controller
     {
@@ -48,12 +48,23 @@
                 return View(new ProductViewModel { Products = new List<Product>() });
             }
 
-             //   subcategories = await Utils.Get<List<ProductSubcategory>>("/api/read/Subcategory", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
-            //    categories = await Utils.Get<List<ProductCategory>>("/api/read/Category", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
-            //    models = await Utils.Get<List<ProductModel>>("/api/read/Model", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
-
             var productViewModel = new ProductViewModel { Products = products, ProductSubcategories = subcategories, ProductCategories = categories, ProductModels = models };
             return View(productViewModel);
         }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            var product = await Utils.Get<Product>("api/Product/" + id, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+            return View(product);
+           
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            // var product = await Utils.Get<List<Product>>("api/Product/" + id.ToString(), _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));            
+            // return View(product);
+            return View();
+        }
+
     }
 }

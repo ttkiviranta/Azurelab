@@ -54,9 +54,10 @@ namespace Server.Data
     //        _context.RemoveRange(_context.ProductReadNulls);
      //       _context.RemoveRange(_context.ProductInsert);
             _context.RemoveRange(_context.Product);
-      //      _context.RemoveRange(_context.ProductSpeeds);
-       //     _context.RemoveRange(_context.ProductSpeedsRead);
-       //     _context.EnsureSeedData();
+            //      _context.RemoveRange(_context.ProductSpeeds);
+            //     _context.RemoveRange(_context.ProductSpeedsRead);
+            //     _context.EnsureSeedData();
+            _context.SaveChanges();
             return _context.SaveChanges();
         }
     }

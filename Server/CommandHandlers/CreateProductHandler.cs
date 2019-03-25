@@ -165,7 +165,7 @@ namespace Server.CommandHandlers
 
             using (var unitOfWork = new ProductUnitOfWork(new ApiContext(_dbContextOptionsBuilder.Options)))
             {
-                unitOfWork.Products.Add(product);
+            //    unitOfWork.Products.Add(product); //virhe!!!
              //   unitOfWork.Complete(); 
                 var db = new ApiContext(_dbContextOptionsBuilder.Options);
                     db.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [Homelab].[Production].[Product]  ON;"); //not work rigth way!!!
@@ -176,6 +176,7 @@ namespace Server.CommandHandlers
                                        listPriceParam, sizeParam, sizeUnitMeasureCodeParam, weightUnitMeasureCodeParam, weightParam, daysToManufactureParam, productLineParam, classParam,
                                        styleParam, productSubcategoryIdParam, productModelIdParam, sellStartDateParam, sellEndDateParam,  discontinuedDateParam, rowguidParam,
                                        modifiedDateParam, userIdentifierParam });
+              //  unitOfWork.Products.Add(product); //virhe!!!
                 unitOfWork.Complete();
             }
             // Publish an event that a car was created?
