@@ -21,20 +21,6 @@ namespace Client
         }
 
 
-        public static async Task<T> Get2<T>(string url, string apiAddress)
-        {
-            using (var client = new HttpClient { BaseAddress = new Uri(apiAddress) })
-            {
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var response = await client.GetAsync(url);
-                var content = await response.Content.ReadAsStringAsync();
-                //  var datalist = JsonConvert.DeserializeObject<List<RetrieveMultipleResponse>>(content);
-                return await Task.Run(() => JsonConvert.DeserializeObject<T>(content));
-            }
-        }
-
-
         // INSERT
         public static async Task<T> Post<T>(string url, object data, string apiAddress)
         {

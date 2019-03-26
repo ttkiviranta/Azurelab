@@ -9,10 +9,17 @@ namespace Shared.Models.Read
 {
     public partial class UnitMeasure
     {
+    
         public UnitMeasure()
         {
+       //     Product = new HashSet<Product>();
             ProductSizeUnitMeasureCodeNavigation = new HashSet<Product>();
             ProductWeightUnitMeasureCodeNavigation = new HashSet<Product>();
+        }
+
+        public UnitMeasure(string unitMeasureCode)
+        {
+            UnitMeasureCode = unitMeasureCode;
         }
 
         public string UnitMeasureCode { get; set; }
@@ -22,5 +29,6 @@ namespace Shared.Models.Read
        
         public ICollection<Product> ProductSizeUnitMeasureCodeNavigation { get; set; }
         public ICollection<Product> ProductWeightUnitMeasureCodeNavigation { get; set; }
+        //public ICollection<Product> Product { get; set; }
     }
 }

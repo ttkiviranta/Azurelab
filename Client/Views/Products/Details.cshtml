@@ -1,4 +1,4 @@
-﻿@model Client.Models.Product
+﻿@model Client.Models.ProductViewModel.ProductViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -11,159 +11,184 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Product.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Product.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ProductNumber)
+            @Html.DisplayNameFor(model => model.Product.ProductNumber)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductNumber)
+            @Html.DisplayFor(model => model.Product.ProductNumber)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.MakeFlag)
+            @Html.DisplayNameFor(model => model.Product.MakeFlag)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.MakeFlag)
+            @Html.DisplayFor(model => model.Product.MakeFlag)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FinishedGoodsFlag)
+            @Html.DisplayNameFor(model => model.Product.FinishedGoodsFlag)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.FinishedGoodsFlag)
+            @Html.DisplayFor(model => model.Product.FinishedGoodsFlag)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Color)
+            @Html.DisplayNameFor(model => model.Product.Color)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Color)
+            @Html.DisplayFor(model => model.Product.Color)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SafetyStockLevel)
+            @Html.DisplayNameFor(model => model.Product.SafetyStockLevel)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SafetyStockLevel)
+            @Html.DisplayFor(model => model.Product.SafetyStockLevel)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ReorderPoint)
+            @Html.DisplayNameFor(model => model.Product.ReorderPoint)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ReorderPoint)
+            @Html.DisplayFor(model => model.Product.ReorderPoint)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.StandardCost)
+            @Html.DisplayNameFor(model => model.Product.StandardCost)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.StandardCost)
+            @Html.DisplayFor(model => model.Product.StandardCost)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ListPrice)
+            @Html.DisplayNameFor(model => model.Product.ListPrice)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ListPrice)
+            @Html.DisplayFor(model => model.Product.ListPrice)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Size)
+            @Html.DisplayNameFor(model => model.Product.Size)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Size)
+            @Html.DisplayFor(model => model.Product.Size)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Weight)
+            @Html.DisplayNameFor(model => model.Product.Weight)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Weight)
+            @Html.DisplayFor(model => model.Product.Weight)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DaysToManufacture)
+            @Html.DisplayNameFor(model => model.Product.DaysToManufacture)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DaysToManufacture)
+            @Html.DisplayFor(model => model.Product.DaysToManufacture)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ProductLine)
+            @Html.DisplayNameFor(model => model.Product.ProductLine)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductLine)
+            @Html.DisplayFor(model => model.Product.ProductLine)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Class)
+            @Html.DisplayNameFor(model => model.Product.Class)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Class)
+            @Html.DisplayFor(model => model.Product.Class)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Style)
+            @Html.DisplayNameFor(model => model.Product.Style)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Style)
+            @Html.DisplayFor(model => model.Product.Style)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SellStartDate)
+            @Html.DisplayNameFor(model => model.Product.SellStartDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SellStartDate)
+            @Html.DisplayFor(model => model.Product.SellStartDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SellEndDate)
+            @Html.DisplayNameFor(model => model.Product.SellEndDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SellEndDate)
+            @Html.DisplayFor(model => model.Product.SellEndDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DiscontinuedDate)
+            @Html.DisplayNameFor(model => model.Product.DiscontinuedDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DiscontinuedDate)
+            @Html.DisplayFor(model => model.Product.DiscontinuedDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Rowguid)
+            @Html.DisplayNameFor(model => model.Product.Rowguid)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Rowguid)
+            @Html.DisplayFor(model => model.Product.Rowguid)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
+            @Html.DisplayNameFor(model => model.Product.ModifiedDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ModifiedDate)
+            @Html.DisplayFor(model => model.Product.ModifiedDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UserIdentifier)
+            @Html.DisplayNameFor(model => model.Product.UserIdentifier)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UserIdentifier)
+            @Html.DisplayFor(model => model.Product.UserIdentifier)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ProductModel)
+            @Html.DisplayNameFor(model => model.Product.ProductModel)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductModel.Name)
+            @if (@Model.Product.ProductModelId != null)
+            {
+                @for (var i = 0; i < Model.ProductModels.Count; i++)
+                {
+
+                    if (@Model.Product.ProductModelId == @Model.ProductModels[i].ProductModelId)
+                    {
+
+                        @Html.DisplayFor(model => model.ProductModels[i].Name)
+
+                    }
+                }
+            }
+
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ProductSubcategory)
+            @Html.DisplayNameFor(model => model.Product.ProductSubcategory)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductSubcategory.Name)
+            @if (@Model.Product.ProductSubcategoryId != null)
+            {
+                @for (var i = 0; i < Model.ProductSubcategories.Count; i++)
+                {
+
+                    if (@Model.Product.ProductSubcategoryId == @Model.ProductSubcategories[i].ProductSubcategoryId)
+                    {
+
+                        @Html.DisplayFor(model => model.ProductSubcategories[i].Name)
+
+                    }
+                }
+            }
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SizeUnitMeasureCodeNavigation)
+            @Html.DisplayNameFor(model => model.Product.SizeUnitMeasureCodeNavigation)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SizeUnitMeasureCodeNavigation.UnitMeasureCode)
+            @Html.DisplayFor(model => model.Product.SizeUnitMeasureCodeNavigation.UnitMeasureCode)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.WeightUnitMeasureCodeNavigation)
+            @Html.DisplayNameFor(model => model.Product.WeightUnitMeasureCodeNavigation)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.WeightUnitMeasureCodeNavigation.UnitMeasureCode)
+            @Html.DisplayFor(model => model.Product.WeightUnitMeasureCodeNavigation.UnitMeasureCode)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Product.ProductId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
 
