@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace Client.Models
 {
@@ -9,8 +10,18 @@ namespace Client.Models
     public partial class Product
     {
 
+        public Product()
+        {
+           // ModifiedDate = DateTime.Now.ToString(new CultureInfo("fi-FI"));
+        }
+
+        public Product(long productId)
+        {
+            ProductId = productId;
+        }
+
         [Display(Name = "Pruduct ID")]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
 
         public string Name { get; set; }
 
@@ -98,7 +109,7 @@ namespace Client.Models
             get { return userIdentifier ?? "Timooo"; }
 
             set { userIdentifier = value; }
-        }
+        } 
 
         [Display(Name = "Product model")]
         public ProductModel ProductModel { get; set; }

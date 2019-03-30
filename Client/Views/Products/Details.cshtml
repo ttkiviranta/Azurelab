@@ -175,9 +175,22 @@
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Product.SizeUnitMeasureCodeNavigation)
+
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Product.SizeUnitMeasureCodeNavigation.UnitMeasureCode)
+            @if (@Model.Product.SizeUnitMeasureCodeNavigation != null)
+            {
+                @for (var i = 0; i < Model.UnitMeasures.Count; i++)
+                {
+
+                    if (@Model.Product.SizeUnitMeasureCode == @Model.UnitMeasures[i].UnitMeasureCode)
+                    {
+
+                        @Html.DisplayFor(model => Model.UnitMeasures[i].UnitMeasureCode)
+
+                    }
+                }
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Product.WeightUnitMeasureCodeNavigation)

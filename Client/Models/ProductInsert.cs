@@ -1,30 +1,25 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using System.Globalization;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Shared.Models.Read
+namespace Client.Models
 {
-    public partial class ProductRead
+    public class ProductInsert
     {
-        public ProductRead()
+        public ProductInsert()
         {
-            // CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
-            Rowguid = Guid.NewGuid(); //poista tämä ???
-          
+           
+            Rowguid = Guid.NewGuid();
+            
         }
-     /*   public ProductRead(Guid rowguid) : this()
-        {
-            Rowguid = rowguid;
-        }*/
 
-        public ProductRead(long productId) :this()
+        public ProductInsert(long productId) : this()
         {
             ProductId = productId;
+
         }
 
-        [Key]
         public long ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -48,24 +43,9 @@ namespace Shared.Models.Read
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-        //[Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        private string userIdentifier;
-        public string UserIdentifier
-        {
-            get { return userIdentifier ?? "Timooo"; }
-
-            set { userIdentifier = value; }
-        }
-    //    public string ProductModelName { get; set; }
-    //    public string ProductSubcategoryName { get; set; }
-   //     public bool? Deleted { get; set; }
-   //     public long ChangeTimeStamp { get; set; }
-
-        public ProductModel ProductModel { get; set; }
-        public ProductSubcategory ProductSubcategory { get; set; }
-        public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
-        public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
+        public string UserIdentifier { get; set; }
+       
     }
 }

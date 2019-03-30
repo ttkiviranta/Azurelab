@@ -1,7 +1,208 @@
-﻿
+﻿@model Client.Models.ProductViewModel.ProductViewModel
+
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.MakeFlag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.MakeFlag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.FinishedGoodsFlag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.FinishedGoodsFlag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Color)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Color)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.SafetyStockLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.SafetyStockLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ReorderPoint)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.ReorderPoint)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.StandardCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.StandardCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ListPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.ListPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Size)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Size)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Weight)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Weight)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.DaysToManufacture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.DaysToManufacture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductLine)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductLine)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Class)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Class)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Style)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Style)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.SellStartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.SellStartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.SellEndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.SellEndDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.DiscontinuedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.DiscontinuedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Rowguid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Rowguid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ModifiedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.ModifiedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.UserIdentifier)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.UserIdentifier)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductModel)
+        </dt>
+        <dd>
+            @if (@Model.Product.ProductModelId != null)
+            {
+                @for (var i = 0; i < Model.ProductModels.Count; i++)
+                {
+
+                    if (@Model.Product.ProductModelId == @Model.ProductModels[i].ProductModelId)
+                    {
+
+                        @Html.DisplayFor(model => model.ProductModels[i].Name)
+
+                    }
+                }
+            }
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductSubcategory)
+        </dt>
+        <dd>
+            @if (@Model.Product.ProductSubcategoryId != null)
+            {
+                @for (var i = 0; i < Model.ProductSubcategories.Count; i++)
+                {
+
+                    if (@Model.Product.ProductSubcategoryId == @Model.ProductSubcategories[i].ProductSubcategoryId)
+                    {
+
+                        @Html.DisplayFor(model => model.ProductSubcategories[i].Name)
+
+                    }
+                }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.SizeUnitMeasureCodeNavigation)
+
+        </dt>
+        <dd>
+            @if (@Model.Product.SizeUnitMeasureCodeNavigation != null)
+            {
+                @for (var i = 0; i < Model.UnitMeasures.Count; i++)
+                {
+
+                    if (@Model.Product.SizeUnitMeasureCode == @Model.UnitMeasures[i].UnitMeasureCode)
+                    {
+
+                        @Html.DisplayFor(model => Model.UnitMeasures[i].UnitMeasureCode)
+
+                    }
+                }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.WeightUnitMeasureCodeNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.WeightUnitMeasureCodeNavigation.UnitMeasureCode)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="@Model.Product.ProductId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to list</a>
+    </form>
+
+</div>

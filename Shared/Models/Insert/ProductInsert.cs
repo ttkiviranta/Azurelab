@@ -1,5 +1,4 @@
 ﻿using System;
-//using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Shared.Models.Read;
 
 namespace Shared.Models.Insert
 {
-  //  [Table("Product", Schema = "Production")]
     public class ProductInsert
     {
         public ProductInsert()
         {
-            // CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
-            this.Rowguid = Guid.NewGuid();
-            
+
+            Rowguid = Guid.NewGuid();
+
         }
 
-        //      public ProductInsert(Guid rowguid) : this()
-        //     {
-        //         Rowguid = rowguid;
-        //        }
+        public ProductInsert(long productId) : this()
+        {
+            ProductId = productId;
+         
+        }
 
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         public long ProductId { get; set; }
         public string Name { get; set; }
@@ -51,18 +49,10 @@ namespace Shared.Models.Insert
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-   //     [Key]
-        public Guid Rowguid {
-            get; set;
-        }
+        public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        private string userIdentifier;
-        public string UserIdentifier
-        {
-            get { return userIdentifier ?? "Timooo!!!"; }
+        public string UserIdentifier { get; set; }
 
-            set { userIdentifier = value; }
-        }
     }
 }
 
