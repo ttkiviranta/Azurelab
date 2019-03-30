@@ -41,8 +41,7 @@ namespace Server.DAL
                 }
             }
             return ProductSubcategories;
-        }
-       
+        }      
     }
 }
 

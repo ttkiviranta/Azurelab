@@ -20,16 +20,11 @@ namespace API.Areas.Read.Controllers
     {
         readonly IEndpointInstance _endpointInstance;
         readonly ProductCategoryDataAccess _productCategoryDataAccess;
-
-
-
-        //public ProductController(IEndpointInstance endpointInstance, IConfiguration configuration)
         public CategoryController(IEndpointInstance endpointInstance, IConfiguration configuration)
         {
             _endpointInstance = endpointInstance;
             _productCategoryDataAccess = new ProductCategoryDataAccess(configuration);
 
-            // _context = apiContext;
         }
 
         // GET api/Product

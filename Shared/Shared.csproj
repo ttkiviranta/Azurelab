@@ -47,7 +47,6 @@
     <Compile Include="Messages\Commands\UpdateProduct.cs" />
     <Compile Include="Messages\Events\ClearDatabase.cs" />
     <Compile Include="Models\Insert\ProductInsert.cs" />
-    <Compile Include="Models\Insert\Testi.cs" />
     <Compile Include="Models\Read\ProductCategory.cs" />
     <Compile Include="Models\Read\ProductModel.cs" />
     <Compile Include="Models\Read\ProductRead.cs" />

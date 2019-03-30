@@ -60,7 +60,6 @@ namespace API.Controllers
         [HttpPost]
          public async Task AddProduct([FromBody] ProductInsert productInsert)
         // public async Task AddProduct([Bind("ProductId,Name,ProductNumber,MakeFlag,FinishedGoodsFlag,Color,SafetyStockLevel,ReorderPoint,StandardCost,ListPrice,Size,SizeUnitMeasureCode,WeightUnitMeasureCode,Weight,DaysToManufacture,ProductLine,Class,Style,ProductSubcategoryId,ProductModelId,SellStartDate,SellEndDate,DiscontinuedDate,Rowguid,ModifiedDate,UserIdentifier")] ProductInsert productInsert)  //For Swagger testing.
-      //  public async Task AddProduct([FromBody] object jsondata)
         {
 
             var createProduct = new CreateProduct

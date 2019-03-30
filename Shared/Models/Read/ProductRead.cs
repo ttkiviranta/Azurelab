@@ -11,13 +11,8 @@ namespace Shared.Models.Read
         public ProductRead()
         {
             // CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
-            Rowguid = Guid.NewGuid(); //poista tämä ???
-          
+            Rowguid = Guid.NewGuid(); //poista tämä ???         
         }
-     /*   public ProductRead(Guid rowguid) : this()
-        {
-            Rowguid = rowguid;
-        }*/
 
         public ProductRead(long productId) :this()
         {
@@ -48,21 +43,10 @@ namespace Shared.Models.Read
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-        //[Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        private string userIdentifier;
-        public string UserIdentifier
-        {
-            get { return userIdentifier ?? "Timooo"; }
-
-            set { userIdentifier = value; }
-        }
-    //    public string ProductModelName { get; set; }
-    //    public string ProductSubcategoryName { get; set; }
-   //     public bool? Deleted { get; set; }
-   //     public long ChangeTimeStamp { get; set; }
-
+        public string UserIdentifier { get; set; }
+       
         public ProductModel ProductModel { get; set; }
         public ProductSubcategory ProductSubcategory { get; set; }
         public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }

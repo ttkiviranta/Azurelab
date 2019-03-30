@@ -22,15 +22,10 @@ namespace API.Areas.Read.Controllers
         readonly IEndpointInstance _endpointInstance;
         readonly UnitMeasureDataAccess _UnitMeasureDataAccess;
 
-
-
-        //public ProductController(IEndpointInstance endpointInstance, IConfiguration configuration)
         public UnitMeasureController(IEndpointInstance endpointInstance, IConfiguration configuration)
         {
             _endpointInstance = endpointInstance;
             _UnitMeasureDataAccess = new UnitMeasureDataAccess(configuration);
-
-            // _context = apiContext;
         }
 
         // GET api/Product

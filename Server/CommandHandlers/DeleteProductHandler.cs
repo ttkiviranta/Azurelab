@@ -62,8 +62,6 @@ namespace Server.CommandHandlers
 
             };
 
-
-
             using (var unitOfWork = new ProductUnitOfWork(new ApiContext(_dbContextOptionsBuilder.Options)))
             {
                 unitOfWork.Products.Remove(product);

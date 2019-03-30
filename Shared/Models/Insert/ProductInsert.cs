@@ -14,15 +14,12 @@ namespace Shared.Models.Insert
     {
         public ProductInsert()
         {
-
             Rowguid = Guid.NewGuid();
-
         }
 
         public ProductInsert(long productId) : this()
         {
-            ProductId = productId;
-         
+            ProductId = productId; 
         }
 
         [Key]

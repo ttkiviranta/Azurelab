@@ -31,15 +31,10 @@ namespace API.Areas.Read.Controllers
         readonly IEndpointInstance _endpointInstance;
         readonly ProductModelDataAccess _productModelDataAccess;
 
-
-
-        //public ProductController(IEndpointInstance endpointInstance, IConfiguration configuration)
         public ModelController(IEndpointInstance endpointInstance, IConfiguration configuration)
         {
             _endpointInstance = endpointInstance;
             _productModelDataAccess = new ProductModelDataAccess(configuration);
-
-            // _context = apiContext;
         }
 
         // GET api/Product

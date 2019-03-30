@@ -12,7 +12,6 @@ namespace Shared.Models.Read
     
         public UnitMeasure()
         {
-       //     Product = new HashSet<Product>();
             ProductSizeUnitMeasureCodeNavigation = new HashSet<Product>();
             ProductWeightUnitMeasureCodeNavigation = new HashSet<Product>();
         }
@@ -26,9 +25,7 @@ namespace Shared.Models.Read
         public string Name { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-       
         public ICollection<Product> ProductSizeUnitMeasureCodeNavigation { get; set; }
         public ICollection<Product> ProductWeightUnitMeasureCodeNavigation { get; set; }
-        //public ICollection<Product> Product { get; set; }
     }
 }

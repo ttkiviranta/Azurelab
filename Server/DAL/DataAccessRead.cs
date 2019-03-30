@@ -20,7 +20,6 @@ namespace Server.DAL
             //_optionsBuilder.UseSqlite("DataSource=" + Helpers.GetDbLocation(Configuration["AppSettings:DbLocation"]) + "Car.db");
             _optionsBuilder.UseSqlServer(Helpers.GetSqlConnection());
         }
-
         
         IConfiguration Configuration { get; set; }
 
@@ -37,29 +36,12 @@ namespace Server.DAL
                 var uniqueProductReadNull = context.Product.Include(p => p.ProductModel).Include(p => p.ProductSubcategory).OrderBy(p => p.ProductId).ToList();
                 foreach (var productReadNull in uniqueProductReadNull)
                 {
-                    
-                /*    if (productReadNull.ProductModel.Name != null)
-                    {
-                        foreach (var modelName in productReadNull.ProductModel.Name)
-                        {
-                            modelList.Add(new ProductModel(productReadNull.ProductModel.Name));
-                        }
-                     
-                    }*/
-
-                    //var modelList = context.Product.Where(w => (w.ProductModelId != null && w.ProductModelId == productReadNull.ProductModelId)).Select(s => new { s.ProductModel }).ToList();
-                    //    var modelList = context.Product.Where(w => (w.ProductModelId != null && w.ProductModelId == productReadNull.ProductModelId)).Select(s => new { s.ProductModel}).ToList();
-                    //    var nameList = context.ProductReadNulls.Where(w => (w.Name != null && w.CompanyId == ProductReadNull.CompanyId)).OrderBy(c => c.ChangeTimeStamp).Select(s => new { Name = s.Name ?? "", s.ChangeTimeStamp }).ToList();
-                    //    var deletedList = context.ProductReadNulls.Where(w => (w.Deleted != null && w.CompanyId == ProductReadNull.CompanyId)).OrderBy(c => c.ChangeTimeStamp).Select(s => new { Deleted = s.Deleted ?? false, s.ChangeTimeStamp }).ToList();
-                    //    bool IsDeleted = (!deletedList.Any()) ? false : deletedList.LastOrD
-                    //    if (!IsDeleted)
                     {
                         productReads.Add(new ProductRead(productReadNull.ProductId)
                         {
                             Name = productReadNull.Name,
                             ProductId = productReadNull.ProductId,
                             ProductNumber = productReadNull.ProductNumber,
-
                             Rowguid = productReadNull.Rowguid,
                             Class = productReadNull.Class,
                             Color = productReadNull.Color,
@@ -83,14 +65,9 @@ namespace Server.DAL
                             UserIdentifier = productReadNull.UserIdentifier,
                             Weight = productReadNull.Weight,
                             WeightUnitMeasureCode = productReadNull.WeightUnitMeasureCode,
-                         //   ProductModelName = productReadNull.ProductSubcategory.Product.ToString(),
-                         //   ProductSubcategoryName = productReadNull.ProductSubcategory.Name.ToString()
-                            //   ProductModel = modelList.LastOrDefault().Name
-                            //    ProductSubcategory = productReadNull.ProductSubcategory
                         });
                     }
                 }
-
                return productReads;
             }
      
@@ -104,7 +81,6 @@ namespace Server.DAL
                 var productReadNull = context.Product.Where(c => c.ProductId == productId);
                 foreach (var ProductReadNull in productReadNull)
                 {
-
                     productRead = new ProductRead(productId)
                     {
                         Name = ProductReadNull.Name,
@@ -135,23 +111,9 @@ namespace Server.DAL
                         Weight = ProductReadNull.Weight,
                         WeightUnitMeasureCode = ProductReadNull.WeightUnitMeasureCode
                     };
-
                 }
-                /* if (productReadNull != null)
-                 {
-                     productRead = new ProductRead(rowquid)
-                     {
-                         Name = productRead.Name,
-                         ProductId = productRead.ProductId,
-                         ProductNumber = productRead.ProductNumber,
-
-                     };
-                 }*/
-
                 return productRead;
             }
-
         }
-
     }
 }

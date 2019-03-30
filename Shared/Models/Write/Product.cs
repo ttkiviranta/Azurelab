@@ -27,7 +27,6 @@ namespace Shared.Models.Write
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-   //     [Key]
         public long ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -51,17 +50,9 @@ namespace Shared.Models.Write
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-   //     [Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        private string userIdentifier;
-        public string UserIdentifier
-        {
-            get { return userIdentifier ?? "Timooo"; }
-
-            set { userIdentifier = value; }
-        }
-
+        public string UserIdentifier { get; set; }
         public ProductModel ProductModel { get; set; }
         public ProductSubcategory ProductSubcategory { get; set; }
         public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }

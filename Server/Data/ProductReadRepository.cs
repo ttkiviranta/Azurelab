@@ -11,7 +11,7 @@ namespace Server.Data
     {
         public ProductReadRepository(ApiContext context) : base(context)
         {
-         //   context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [Homelab].[Production].[Product] ON;");
+       
         }
 
         public ApiContext ApiContext => Context as ApiContext;

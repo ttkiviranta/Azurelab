@@ -12,9 +12,6 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
-    //   [Produces("application/json")]
-    //   [Route("api/Products")]
-
     public class ProductsController : Controller
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -31,13 +28,9 @@
         }
 
         // GET: Products
-
         public async Task<IActionResult> Index()
         {
-
-
             ViewBag.ApiAddress = _httpContextAccessor.HttpContext.Session.GetString("ApiAddress");
-
 
             try
             {
@@ -77,8 +70,7 @@
             ViewData["WeightUnitMeasureCode"] = new SelectList(unitmeasures, "UnitMeasureCode", "Name");
 
             var productViewModel = new ProductViewModel { Product = product, ProductSubcategories = subcategories, ProductCategories = categories, ProductModels = models };
-            return View(productViewModel);
-           
+            return View(productViewModel);          
         }
 
         // GET: Product/Create
@@ -103,7 +95,7 @@
 
              unitmeasures = await Utils.Get<List<UnitMeasure>>("/api/read/Model", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             ViewData["WeightUnitMeasureCode"] = new SelectList(unitmeasures, "UnitMeasureCode", "Name");
-        //    ViewData["id"] = -1;
+      
             return View();
         }
 
@@ -114,39 +106,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,Name,ProductNumber,MakeFlag,FinishedGoodsFlag,Color,SafetyStockLevel,ReorderPoint,StandardCost,ListPrice,Size,SizeUnitMeasureCode,WeightUnitMeasureCode,Weight,DaysToManufacture,ProductLine,Class,Style,ProductSubcategoryId,ProductModelId,SellStartDate,SellEndDate,DiscontinuedDate,Rowguid,ModifiedDate,UserIdentifier")] ProductInsert product)
         {
-            if (!ModelState.IsValid) return View(product);
-
-         /*     var newProduct = new ProductInsert();
-
-              newProduct.Name = product.Name;
-
-
-              newProduct.ProductId = product.ProductId;
-              newProduct.ProductNumber = product.ProductNumber;
-
-              newProduct.Rowguid = product.Rowguid;
-              newProduct.Class = product.Class;
-              newProduct.Color = product.Color;
-              newProduct.DaysToManufacture = product.DaysToManufacture;
-              newProduct.DiscontinuedDate = product.DiscontinuedDate;
-              newProduct.FinishedGoodsFlag = product.FinishedGoodsFlag;
-              newProduct.ListPrice = product.ListPrice;
-              newProduct.MakeFlag = product.MakeFlag;
-              newProduct.ModifiedDate = product.ModifiedDate;
-              newProduct.ProductLine = product.ProductLine;
-              newProduct.ProductModelId = product.ProductModelId;
-              newProduct.ProductSubcategoryId = product.ProductSubcategoryId;
-              newProduct.ReorderPoint = product.ReorderPoint;
-              newProduct.SafetyStockLevel = product.SafetyStockLevel;
-              newProduct.SellEndDate = product.SellEndDate;
-              newProduct.SellStartDate = product.SellStartDate;
-              newProduct.Size = product.Size;
-              newProduct.SizeUnitMeasureCode = product.SizeUnitMeasureCode;
-              newProduct.StandardCost = product.StandardCost;
-              newProduct.Style = product.Style;
-              newProduct.UserIdentifier = product.UserIdentifier;
-              newProduct.Weight = product.Weight;
-              newProduct.WeightUnitMeasureCode = product.WeightUnitMeasureCode;*/
+            if (!ModelState.IsValid) return View(product);   
             product.ProductId = -1;
             await Utils.Post<ProductInsert>("api/Product/" , product, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
 
@@ -164,14 +124,13 @@
             List<UnitMeasure> unitmeasures;
             //List<WeightMeasure> unitmeasures;
 
-
             var product = await Utils.Get<Product>("api/Product/" + id, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
 
             subcategories = await Utils.Get<List<ProductSubcategory>>("/api/read/Subcategory", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             ViewData["ProductSubcategoryId"] = new SelectList(subcategories, "ProductSubcategoryId", "Name");
 
             categories = await Utils.Get<List<ProductCategory>>("/api/read/Category", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
-          
+           
             models = await Utils.Get<List<ProductModel>>("/api/read/Model", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             ViewData["ProductModelId"] = new SelectList(models, "ProductModelId", "Name");
 
@@ -197,11 +156,7 @@
             var oldProduct = await Utils.Get<Product>("api/Product/" + productId, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
 
             oldProduct.Name = product.Name;
-
-
-          //  oldProduct.ProductId = product.ProductId;
             oldProduct.ProductNumber = product.ProductNumber;
-
             oldProduct.Rowguid = product.Rowguid;
             oldProduct.Class = product.Class;
             oldProduct.Color = product.Color;

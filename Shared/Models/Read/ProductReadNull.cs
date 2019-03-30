@@ -43,15 +43,8 @@ namespace Shared.Models.Read
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-       // [Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        private string userIdentifier;
-        public string UserIdentifier
-        {
-            get { return userIdentifier ?? "Timooo"; }
-
-            set { userIdentifier = value; }
-        }
+        public string UserIdentifier { get; set; }       
     }
 }

@@ -21,12 +21,7 @@ namespace Server.EventHandlers
         public Task Handle(ClearDatabase message, IMessageHandlerContext context)
         {
             log.Info("Received ClearDatabase");
- /*           using (var unitOfWork = new CarUnitOfWork(new ApiContext(_dbContextOptionsBuilder.Options)))
-            {
-                unitOfWork.ClearDatabase();
-            }
-
-            // publish an event that a company had been deleted?*/
+ 
             return Task.CompletedTask;
         }
     }

@@ -13,14 +13,11 @@ namespace Shared.Messages.Commands
     {
         public CreateProduct()
         {
-            //   CreationTime = DateTime.Now.ToString(new CultureInfo("en-US"));
             Rowguid = Guid.NewGuid();
-         //   ProductId = -1;
+         
         }
 
-        //      
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        //[Key]
         public long ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
@@ -44,7 +41,6 @@ namespace Shared.Messages.Commands
         public DateTime? SellStartDate { get; set; }
         public DateTime? SellEndDate { get; set; }
         public DateTime? DiscontinuedDate { get; set; }
-        //   [Key]
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string UserIdentifier { get; set; }

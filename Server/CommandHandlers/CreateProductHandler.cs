@@ -179,8 +179,7 @@ namespace Server.CommandHandlers
               //  unitOfWork.Products.Add(product); //virhe!!!
                 unitOfWork.Complete();
             }
-            // Publish an event that a car was created?
-          
+           
             return Task.CompletedTask;
         }
     }

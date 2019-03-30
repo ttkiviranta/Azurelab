@@ -13,6 +13,5 @@ namespace Server.DAL
            : base(options)
         {
         }
-    //    public DbSet<ProductSubcategory> ProductSubcategories { get; set; }
     }
 }

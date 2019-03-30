@@ -32,11 +32,8 @@ namespace Server.DAL
              : base(options)
         { }
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /// modelBuilder.Entity<Product>().ToSchema("Production");
             modelBuilder.HasDefaultSchema("Production");
             modelBuilder.Entity<Product>().HasKey(s => s.ProductId);
             modelBuilder.Entity<Product>(entity =>

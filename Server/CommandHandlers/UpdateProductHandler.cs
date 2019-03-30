@@ -61,7 +61,6 @@ namespace Server.CommandHandlers
                 WeightUnitMeasureCode = message.WeightUnitMeasureCode
 
             };
-
             
 
             using (var unitOfWork = new ProductUnitOfWork(new ApiContext(_dbContextOptionsBuilder.Options)))
