@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Write\Controllers\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 

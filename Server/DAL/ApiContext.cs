@@ -27,6 +27,11 @@ namespace Server.DAL
         public virtual DbSet<ProductSubcategory> ProductSubcategory { get; set; }
         public virtual DbSet<UnitMeasure> UnitMeasure { get; set; }
 
+        public virtual DbSet<ProductOnlineStatus> ProductOnlineStatuses { get; set; }
+        public virtual DbSet<ProductOnlineStatusRead> ProductOnlineStatusesRead { get; set; }
+        public virtual DbSet<ProductLockedStatus> ProductLockedStatuses { get; set; }
+        public virtual DbSet<ProductLockedStatusRead> ProductLockedStatusesRead { get; set; }
+
 
         public ApiContext(DbContextOptions options)
              : base(options)

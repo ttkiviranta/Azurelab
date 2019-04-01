@@ -67,8 +67,8 @@ namespace Shared.Utils
             var transportPriority = endpointConfiguration.UseTransport<AzureStorageQueueTransport>()
                                       .ConnectionString(Helpers.GetStorageConnection());
             var routingPriority = transportPriority.Routing();
-          //  routingPriority.RegisterPublisher(typeof(UpdateCarLockedStatus), ApiPriorityEndpoint);
-          //  routingPriority.RegisterPublisher(typeof(ClearDatabase), ApiPriorityEndpoint);
+            routingPriority.RegisterPublisher(typeof(UpdateProductLockedStatus), ApiPriorityEndpoint);
+            routingPriority.RegisterPublisher(typeof(ClearDatabase), ApiPriorityEndpoint);
             return endpointConfiguration;
         }
 
