@@ -11,11 +11,18 @@ namespace Shared.Models.Write
     {
         public ProductOnlineStatus()
         {
-            LockedTimeStamp = DateTime.Now.Ticks;
+            OnlineTimeStamp = DateTime.Now.Ticks;
         }
+
+        public ProductOnlineStatus(long producId)
+        {
+            ProductID = producId;
+        }
+
         [Key]
         public long ProductID { get; set; }
-        public bool Locked { get; set; }
-        public long LockedTimeStamp { get; set; }
+        public bool Online { get; set; }
+        public long OnlineTimeStamp { get; set; }
+        public Guid OnlineStatusID { get; set; }
     }
 }

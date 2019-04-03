@@ -38,12 +38,12 @@ namespace API.Areas.Read.Controllers
         }
 
         // GET: api/LockedStatus/5
- /*       [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public ProductLockedStatus Get(long id)
         {
-            return "value";
-        }*/
+            return _productLockedStatusDataAccess.GetLockedStatus(id);
+        }
 
-      
+
     }
 }

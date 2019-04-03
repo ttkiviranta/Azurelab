@@ -23,5 +23,6 @@ namespace Shared.Models.Read
         public long ProductID { get; set; }
         public bool Online { get; set; }
         public long OnlineTimeStamp { get; set; }
+        public Guid OnlineStatusID { get; set; }
     }
 }

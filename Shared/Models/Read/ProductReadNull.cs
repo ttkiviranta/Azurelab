@@ -19,6 +19,12 @@ namespace Shared.Models.Read
         {
             Rowguid = rowguid;
         }
+
+        public ProductReadNull(long productId)
+        {
+            ProductId = productId;
+        }
+
         [Key]
         public long ProductId { get; set; }
         public string Name { get; set; }
@@ -45,6 +51,11 @@ namespace Shared.Models.Read
         public DateTime? DiscontinuedDate { get; set; }
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public string UserIdentifier { get; set; }       
+        public string UserIdentifier { get; set; }
+
+        public Guid LockedStatusID { get; set; }
+        public bool? Online { get; set; }
+        public bool? Locked { get; set; }
+        public long ChangeTimeStamp { get; set; }
     }
 }

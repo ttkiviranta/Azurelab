@@ -7,33 +7,56 @@ using Server.DAL;
 using Shared.Messages.Commands;
 using Shared.Models.Insert;
 using Shared.Models.Read;
+using Shared.Models.Write;
+using Shared.Messages.Events;
 using Shared.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace API.Areas.Write.Controllers
 {
-/*    [Route("api/write/[controller]")]
-    [ApiController]
+    [Route("api/write/[controller]")]
+    //  [ApiController]
     public class OnlineStatusController : ControllerBase
     {
-      
-        // POST: api/OnlineStatus
-        [HttpPost]
-        public void Post([FromBody] string value)
+        readonly IEndpointInstance _endpointInstance;
+        readonly IEndpointInstance _endpointInstancePriority;
+        readonly ProductOnlineStatusDataAccess _productOnlineStatusDataAccess;
+
+        public OnlineStatusController(IEndpointInstance endpointInstance, IEndpointInstance endpointInstancePriority, IConfiguration configuration)
         {
+            _endpointInstance = endpointInstance;
+            _endpointInstancePriority = endpointInstancePriority;
+            _productOnlineStatusDataAccess = new ProductOnlineStatusDataAccess(configuration);
         }
 
-        // PUT: api/OnlineStatus/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+
+        [HttpPut("/api/write/Product/online/{id}")]
+        [EnableCors("AllowAllOrigins")]
+        //  public async Task UpdateProductLocked(int id, [FromBody] ProductOnlineStatusRead productOnlineStatusRead)
+        public async Task UpdateProductOnline([Bind("ProductID, Online, OnlineTimeStamp, OnlineStatusID")] ProductOnlineStatusRead productOnlineStatusRead)
         {
+            var oldProductOnlineStatus = GetOnlineStatus(productOnlineStatusRead.ProductID);
+            if (oldProductOnlineStatus == null) return;
+            var updateProductOnlineStatus = new UpdateProductOnlineStatus
+            {
+                OnlineStatus = productOnlineStatusRead.Online,
+                OnlineStatusID = productOnlineStatusRead.OnlineStatusID,
+                ProductId = productOnlineStatusRead.ProductID,
+                UpdateProductOnlineTimeStamp = DateTime.Now.Ticks
+            };
+            await _endpointInstancePriority.Send(updateProductOnlineStatus).ConfigureAwait(false);
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        /*    [HttpDelete("{id}")]
+            public void Delete(int id)
+            {
+            }*/
+
+        ProductOnlineStatus GetOnlineStatus(long id)
         {
+            return _productOnlineStatusDataAccess.GetOnlineStatus(id);
         }
-    }*/
+    }
 }

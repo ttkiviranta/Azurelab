@@ -7,6 +7,7 @@ using Server.DAL;
 using Shared.Messages.Commands;
 using Shared.Models.Insert;
 using Shared.Models.Read;
+using Shared.Models.Write;
 using Shared.Utils;
 using System;
 using System.Collections.Generic;
@@ -31,18 +32,17 @@ namespace API.Areas.Read.Controllers
 
         // GET: api/LockedStatus
         [HttpGet]
-        public IEnumerable<ProductOnlineStatusRead> GetOnlineStatuses()
+        public IEnumerable<ProductOnlineStatus> GetOnlineStatuses()
         {
             return _productOnlineStatusDataAccess.GetOnlineStatuses();
         }
 
         // GET: api/LockedStatus/5
-        /*       [HttpGet("{id}", Name = "Get")]
-               public string Get(int id)
-               {
-                   return "value";
-               }*/
-
+        [HttpGet("{id}")]
+        public ProductOnlineStatus Get(long id)
+        {
+            return _productOnlineStatusDataAccess.GetOnlineStatus(id);
+        }
 
     }
 }

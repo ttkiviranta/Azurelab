@@ -57,5 +57,9 @@ namespace Shared.Models.Write
         public ProductSubcategory ProductSubcategory { get; set; }
         public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
         public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
+
+      
+        public ProductLockedStatus ProductLockedStatus { get; set; }
+        public ProductOnlineStatus ProductOnlineStatus { get; set; }
     }
 }

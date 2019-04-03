@@ -1,5 +1,7 @@
 ﻿using NServiceBus;
 using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Shared.Messages.Events
 {
     public class UpdateProductLockedStatus
@@ -9,8 +11,10 @@ namespace Shared.Messages.Events
             DataId = Guid.NewGuid();
         }
         public Guid DataId { get; set; }
-        public Guid CompanyId { get; set; }
+        public long ProductId { get; set; }
         public long UpdateProductLockedTimeStamp { get; set; }
         public bool LockedStatus { get; set; }
+        [Key]
+        public Guid LockedStatusID { get; set; }
     }
 }

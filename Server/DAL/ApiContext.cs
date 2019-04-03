@@ -14,9 +14,6 @@ namespace Server.DAL
 
     public partial class ApiContext : DbContext
     {
-
-
-
         //   public virtual DbSet<Audit> Audit { get; set; }
         public virtual DbSet<ProductRead> ProductRead { get; set; }
         public virtual DbSet<ProductInsert> ProductInsert { get; set; }

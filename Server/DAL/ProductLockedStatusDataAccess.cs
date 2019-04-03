@@ -36,12 +36,31 @@ namespace Server.DAL
                     {
                         ProductID = ProductLockedStatusReadNull.ProductID,
                         Locked = ProductLockedStatusReadNull.Locked,
-                        LockedTimeStamp = ProductLockedStatusReadNull.LockedTimeStamp
+                        LockedTimeStamp = ProductLockedStatusReadNull.LockedTimeStamp,
+                        LockedStatusID = ProductLockedStatusReadNull.LockedStatusID
                     });
                 }
             }
             return GetLockedStatuses;
         }
-
+        public ProductLockedStatus GetLockedStatus(long productId)
+        {
+            ProductLockedStatus productRead = null;
+            using (var context = new ApiContext(_optionsBuilder.Options))
+            {
+                var productReadNull = context.ProductLockedStatuses.Where(c => c.ProductID == productId);
+                foreach (var ProductReadNull in productReadNull)
+                {
+                    productRead = new ProductLockedStatus(productId)
+                    {
+                        ProductID = ProductReadNull.ProductID,
+                        Locked = ProductReadNull.Locked,
+                        LockedTimeStamp = ProductReadNull.LockedTimeStamp,
+                        LockedStatusID = ProductReadNull.LockedStatusID
+                    };
+                }
+                return productRead;
+            }
+        }
     }
 }

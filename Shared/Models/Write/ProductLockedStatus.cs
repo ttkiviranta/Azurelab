@@ -19,9 +19,11 @@ namespace Shared.Models.Write
             ProductID = producId;
         }
 
-        [Key]
+        
         public long ProductID { get; set; }
         public bool Locked { get; set; }
         public long LockedTimeStamp { get; set; }
+        [Key]
+        public Guid LockedStatusID { get; set; }
     }
 }
