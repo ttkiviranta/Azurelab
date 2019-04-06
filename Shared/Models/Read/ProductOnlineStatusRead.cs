@@ -14,9 +14,9 @@ namespace Shared.Models.Read
             OnlineTimeStamp = DateTime.Now.Ticks;
         }
 
-        public ProductOnlineStatusRead(long producId)
+        public ProductOnlineStatusRead(long productId)
         {
-            ProductID = producId;
+            ProductID = productId;
         }
 
         [Key]

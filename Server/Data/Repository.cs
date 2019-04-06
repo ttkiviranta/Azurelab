@@ -20,7 +20,7 @@ namespace Server.Data
             return Context.Set<TEntity>().Where(predicate);
         }
 
-        public TEntity Get(Guid id)
+        public TEntity Get(long id)
         {
             return Context.Set<TEntity>().Find(id);
         }

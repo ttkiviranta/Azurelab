@@ -11,10 +11,11 @@ namespace Shared.Messages.Events
             DataId = Guid.NewGuid();
         }
         public Guid DataId { get; set; }
+        [Key]
         public long ProductId { get; set; }
         public long UpdateProductLockedTimeStamp { get; set; }
         public bool LockedStatus { get; set; }
-        [Key]
+  //     [Key]
         public Guid LockedStatusID { get; set; }
     }
 }

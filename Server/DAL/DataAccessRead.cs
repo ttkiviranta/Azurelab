@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Shared.Models.Read;
+using Shared.Models.Write;
 using Shared.Models;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -28,14 +29,17 @@ namespace Server.DAL
         public ICollection<ProductRead> GetProducts()
         {
             var productReads = new List<ProductRead>();
-           // ProductModel productModel = new ProductModel();
 
             using (var context = new ApiContext(_optionsBuilder.Options))
             {
-                //    var uniqueProductReadNull =  context.Product.OrderBy(c => c.ProductId).ToList();
-                var uniqueProductReadNull = context.Product.Include(p => p.ProductModel).Include(p => p.ProductSubcategory).OrderBy(p => p.ProductId).ToList();
+             /*      var uniqueProductReadNull =  context.Product.OrderBy(c => c.ProductId).Select(p => new
+                   {
+                       p.
+                   }).FirstOrDefault(p => ;*/
+                var uniqueProductReadNull = context.Product.Include(p => p.ProductModel).Include(p => p.ProductSubcategory).Include(p => p.ProductLockedStatus).OrderBy(p => p.ProductId).ToList();
                 foreach (var productReadNull in uniqueProductReadNull)
                 {
+ 
                     {
                         productReads.Add(new ProductRead(productReadNull.ProductId)
                         {
@@ -65,6 +69,7 @@ namespace Server.DAL
                             UserIdentifier = productReadNull.UserIdentifier,
                             Weight = productReadNull.Weight,
                             WeightUnitMeasureCode = productReadNull.WeightUnitMeasureCode,
+                            ProductLockedStatus = productReadNull.ProductLockedStatus
                         });
                     }
                 }

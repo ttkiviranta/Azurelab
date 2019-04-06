@@ -7,23 +7,29 @@ using System.Threading.Tasks;
 
 namespace Shared.Models.Write
 {
-    public class ProductLockedStatus
+    public partial class ProductLockedStatus
     {
         public ProductLockedStatus()
         {
-            LockedTimeStamp = DateTime.Now.Ticks;
+            //LockedTimeStamp = DateTime.Now.Ticks;
+            Product = new HashSet<Product>();
         }
 
-        public ProductLockedStatus(long producId)
+        public ProductLockedStatus(long productId)
         {
-            ProductID = producId;
+            ProductID = productId;
+          //  LockedTimeStamp = DateTime.Now.Ticks;
+            Product = new HashSet<Product>();
         }
 
-        
+        [Key]
         public long ProductID { get; set; }
         public bool Locked { get; set; }
         public long LockedTimeStamp { get; set; }
-        [Key]
+   //     [Key]
         public Guid LockedStatusID { get; set; }
+
+     //   public virtual Product Product { get; set; }
+        public ICollection<Product> Product  { get; set; }
     }
 }

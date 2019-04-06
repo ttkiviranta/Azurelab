@@ -5,7 +5,7 @@ namespace Server.Data
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        TEntity Get(Guid id);
+        TEntity Get(long id);
         void Add(TEntity entity);
         void Update(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);

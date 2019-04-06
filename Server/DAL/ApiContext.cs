@@ -25,9 +25,9 @@ namespace Server.DAL
         public virtual DbSet<UnitMeasure> UnitMeasure { get; set; }
 
         public virtual DbSet<ProductOnlineStatus> ProductOnlineStatuses { get; set; }
-        public virtual DbSet<ProductOnlineStatusRead> ProductOnlineStatusesRead { get; set; }
+        
         public virtual DbSet<ProductLockedStatus> ProductLockedStatuses { get; set; }
-        public virtual DbSet<ProductLockedStatusRead> ProductLockedStatusesRead { get; set; }
+       
 
 
         public ApiContext(DbContextOptions options)
@@ -120,6 +120,11 @@ namespace Server.DAL
               entity.HasOne(d => d.WeightUnitMeasureCodeNavigation)
                   .WithMany(p => p.ProductWeightUnitMeasureCodeNavigation)
                   .HasForeignKey(d => d.WeightUnitMeasureCode);
+
+              entity.HasOne(d => d.ProductLockedStatus)
+                 .WithMany(p => p.Product)
+                 .HasForeignKey(d => d.ProductId);
+              
           });
             modelBuilder.Entity<ProductModel>(entity =>
             {
@@ -210,6 +215,17 @@ namespace Server.DAL
                     .IsRequired()
                     .HasColumnType("Name")
                     .HasMaxLength(4000);
+            });
+
+            modelBuilder.Entity<ProductLockedStatus>(entity =>
+            {
+                entity.ToTable("ProductLockedStatuses", "Production");
+
+                entity.Property(e => e.ProductID).HasColumnName("ProductID");
+                entity.Property(e => e.Locked).HasColumnName("Locked");
+                entity.Property(e => e.LockedTimeStamp).HasColumnName("LockedTimeStamp");
+                entity.Property(e => e.LockedStatusID).HasColumnName("LockedStatusID");
+
             });
         }
 

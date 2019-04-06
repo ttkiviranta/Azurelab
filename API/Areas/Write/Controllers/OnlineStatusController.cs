@@ -45,7 +45,8 @@ namespace API.Areas.Write.Controllers
                 ProductId = productOnlineStatusRead.ProductID,
                 UpdateProductOnlineTimeStamp = DateTime.Now.Ticks
             };
-            await _endpointInstancePriority.Send(updateProductOnlineStatus).ConfigureAwait(false);
+           
+            await _endpointInstance.Send(Helpers.ServerEndpoint, updateProductOnlineStatus).ConfigureAwait(false);
         }
 
         // DELETE: api/ApiWithActions/5

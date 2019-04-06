@@ -1,22 +1,24 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using Shared.Models.Write;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Shared.Models.Read
 {
-    public class ProductLockedStatusRead
+    public partial class ProductLockedStatusRead
     {
         public ProductLockedStatusRead()
         {
-            LockedTimeStamp = DateTime.Now.Ticks;
+          //  LockedTimeStamp = DateTime.Now.Ticks;
+            Product = new HashSet<Product>();
         }
 
-        public ProductLockedStatusRead(long producId)
+        public ProductLockedStatusRead(long productId)
         {
-            ProductID = producId;
+            ProductID = productId;
         }
 
         [Key]
@@ -24,5 +26,7 @@ namespace Shared.Models.Read
         public bool Locked { get; set; }
         public long LockedTimeStamp { get; set; }
         public Guid LockedStatusID { get; set; }
+
+        public ICollection<Product> Product { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace Server.EventHandlers
 
             using (var unitOfWork = new ProductUnitOfWork(new ApiContext(_dbContextOptionsBuilder.Options)))
             {
-                if (unitOfWork.ProductLockedStatuses.Get(message.LockedStatusID) == null) return Task.CompletedTask;
+                if (unitOfWork.ProductLockedStatuses.Get(message.ProductId) == null) return Task.CompletedTask;
             }
             var ProductLockedStatus = new ProductLockedStatus
             {

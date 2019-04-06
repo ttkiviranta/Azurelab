@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Globalization;
 using System.ComponentModel.DataAnnotations.Schema;
+using Shared.Models.Write;
 
 namespace Shared.Models.Read
 {
@@ -46,10 +47,16 @@ namespace Shared.Models.Read
         public Guid Rowguid { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string UserIdentifier { get; set; }
-       
+        public bool Online { get; set; }
+        public bool Locked { get; set; }
+        public long LockedTimeStamp { get; set; }
+        public int QueueLength { get; set; }
+
         public ProductModel ProductModel { get; set; }
         public ProductSubcategory ProductSubcategory { get; set; }
         public UnitMeasure SizeUnitMeasureCodeNavigation { get; set; }
         public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
+        public ProductLockedStatus ProductLockedStatus { get; set; }
+        public ProductOnlineStatus ProductOnlineStatus { get; set; }
     }
 }

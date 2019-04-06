@@ -14,15 +14,16 @@ namespace Shared.Models.Write
             OnlineTimeStamp = DateTime.Now.Ticks;
         }
 
-        public ProductOnlineStatus(long producId)
+        public ProductOnlineStatus(long productId)
         {
-            ProductID = producId;
+            ProductID = productId;
         }
 
-        [Key]
+        
         public long ProductID { get; set; }
         public bool Online { get; set; }
         public long OnlineTimeStamp { get; set; }
+        [Key]
         public Guid OnlineStatusID { get; set; }
     }
 }
