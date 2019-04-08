@@ -117,12 +117,12 @@
                 </td>
 
             }
-            <td>
-                Online
-            </td>
-            <td>
-                No
-            </td>
+                <td>
+                    @Html.DisplayFor(model => model.Products[i].Online)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Products[i].Locked)
+                </td>
 
             <td>
                 <a href="/Products/Edit/@Model.Products[i].ProductId">Edit</a> @Html.Raw("|")

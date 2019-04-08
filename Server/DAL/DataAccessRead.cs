@@ -36,7 +36,7 @@ namespace Server.DAL
                    {
                        p.
                    }).FirstOrDefault(p => ;*/
-                var uniqueProductReadNull = context.Product.Include(p => p.ProductModel).Include(p => p.ProductSubcategory).Include(p => p.ProductLockedStatus).OrderBy(p => p.ProductId).ToList();
+                var uniqueProductReadNull = context.Product.Include(p => p.ProductModel).Include(p => p.ProductSubcategory).Include(p => p.ProductLockedStatus).Include(p => p.ProductOnlineStatus).OrderBy(p => p.ProductId).ToList();
                 foreach (var productReadNull in uniqueProductReadNull)
                 {
  
@@ -69,7 +69,8 @@ namespace Server.DAL
                             UserIdentifier = productReadNull.UserIdentifier,
                             Weight = productReadNull.Weight,
                             WeightUnitMeasureCode = productReadNull.WeightUnitMeasureCode,
-                            ProductLockedStatus = productReadNull.ProductLockedStatus
+                            ProductLockedStatus = productReadNull.ProductLockedStatus,
+                            ProductOnlineStatus = productReadNull.ProductOnlineStatus
                         });
                     }
                 }
@@ -83,7 +84,8 @@ namespace Server.DAL
             ProductRead productRead = null;
             using (var context = new ApiContext(_optionsBuilder.Options))
             {
-                var productReadNull = context.Product.Where(c => c.ProductId == productId);
+                //     var productReadNull = context.Product.Where(c => c.ProductId == productId).Include(p => p.ProductLockedStatus).Include(p => p.ProductOnlineStatus);
+                var productReadNull = context.Product.Include(p => p.ProductLockedStatus).Include(p => p.ProductOnlineStatus).Where(c => c.ProductId == productId);
                 foreach (var ProductReadNull in productReadNull)
                 {
                     productRead = new ProductRead(productId)
@@ -114,7 +116,9 @@ namespace Server.DAL
                         Style = ProductReadNull.Style,
                         UserIdentifier = ProductReadNull.UserIdentifier,
                         Weight = ProductReadNull.Weight,
-                        WeightUnitMeasureCode = ProductReadNull.WeightUnitMeasureCode
+                        WeightUnitMeasureCode = ProductReadNull.WeightUnitMeasureCode,
+                        ProductOnlineStatus = ProductReadNull.ProductOnlineStatus,
+                        ProductLockedStatus = ProductReadNull.ProductLockedStatus
                     };
                 }
                 return productRead;

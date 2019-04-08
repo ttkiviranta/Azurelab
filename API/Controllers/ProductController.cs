@@ -64,7 +64,9 @@ namespace API.Controllers
         [EnableCors("AllowAllOrigins")]
         [HttpGet]
         public async Task<IEnumerable<ProductRead>> GetProductsAsync()
+        //  public IEnumerable<ProductRead> GetProducts()
         {
+            var list = new List<ProductRead>();
             var products = _dataAccessRead.GetProducts();
             foreach (var product in products)
             {
@@ -72,7 +74,7 @@ namespace API.Controllers
                 {
                     if (ProductHasBeenLocked40Seconds(product))
                     { //Lock timed out and can be ignored and set to false
-                       var updateProductLockedStatus = new UpdateProductLockedStatus
+                        var updateProductLockedStatus = new UpdateProductLockedStatus
                         {
                             LockedStatus = false,
                             LockedStatusID = product.ProductLockedStatus.LockedStatusID,
@@ -82,15 +84,183 @@ namespace API.Controllers
                         await _endpointInstancePriority.Publish(updateProductLockedStatus).ConfigureAwait(false);
                     }
                 }
+                list.Add(new ProductRead(product.ProductId)
+                {
+                    Class = product.Class,
+                    Color = product.Color,
+                    DaysToManufacture = product.DaysToManufacture,
+                    DiscontinuedDate = product.DiscontinuedDate,
+                    FinishedGoodsFlag = product.FinishedGoodsFlag,
+                    ListPrice = product.ListPrice,
+                    MakeFlag = product.MakeFlag,
+                    ModifiedDate = product.ModifiedDate,
+                    Name = product.Name,
+                    ProductId = product.ProductId,
+                    ProductLine = product.ProductLine,
+                    ProductModelId = product.ProductModelId,
+                    ProductNumber = product.ProductNumber,
+                    ProductSubcategoryId = product.ProductSubcategoryId,
+                    ReorderPoint = product.ReorderPoint,
+                    SafetyStockLevel = product.SafetyStockLevel,
+                    SellEndDate = product.SellEndDate,
+                    SellStartDate = product.SellStartDate,
+                    Size = product.Size,
+                    SizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                    StandardCost = product.StandardCost,
+                    Style = product.Style,
+                    UserIdentifier = product.UserIdentifier,
+                    Weight = product.Weight,
+                    WeightUnitMeasureCode = product.WeightUnitMeasureCode,
+                    Locked = product.Locked,
+                    Online = product.Online
+                });
             }
-            return _dataAccessRead.GetProducts();
+            return list;
+        }
+
+        static string GetProductIdFromMessage(CloudQueueMessage message)
+        {
+            var json = message.AsString;
+            var byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
+            if (json.StartsWith(json))
+            {
+                json = json.Remove(0, byteOrderMarkUtf8.Length);
+            }
+            dynamic parsedJson = JsonConvert.DeserializeObject(json);
+            var body = (string)parsedJson.Body;
+            byte[] data = Convert.FromBase64String(body);
+            string tmp = Encoding.UTF8.GetString(data);
+            if (tmp.IndexOf("ProductId") > -1)
+            {
+                return tmp.Substring(tmp.IndexOf("ProductId") + 8, 36);
+            }
+            return Guid.Empty.ToString();
+        }
+
+        static async Task<Dictionary<string, int>> GetQueueLenghtForEachProduct()
+        {
+            Dictionary<string, int> queueLengthPerProduct = new Dictionary<string, int>();
+            CloudStorageAccount storageAccount = QueueStorage.Common.CreateStorageAccountFromConnectionString(Helpers.GetStorageConnection());
+            CloudQueueClient cloudQueueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue queue = cloudQueueClient.GetQueueReference(Helpers.ServerEndpoint);
+            IEnumerable<CloudQueueMessage> peekedMessages = await queue.PeekMessagesAsync(32);
+            if (peekedMessages != null)
+            {
+                foreach (var msg in peekedMessages.ToList())
+                {
+                    var productId = GetProductIdFromMessage(msg);
+                    if (ProductIdAlreadyInQueue(queueLengthPerProduct, productId))
+                    {
+                        queueLengthPerProduct[productId]++;
+                    }
+                    else
+                    {
+                        queueLengthPerProduct.Add(productId, 1);
+                    }
+                }
+            }
+            return queueLengthPerProduct;
+        }
+
+
+        [HttpGet("/api/read/productandqueuelength")]
+        [EnableCors("AllowAllOrigins")]
+        public async Task<IEnumerable<ProductRead>> GetProductsAndQueLengthAsync()
+        {
+            Dictionary<string, int> queueLengthForEachProduct = await GetQueueLenghtForEachProduct();
+            var list = new List<ProductRead>();
+            var products = _dataAccessRead.GetProducts();
+            foreach (var product in products)
+            {
+                if (product.Locked)
+                {
+                    if (ProductHasBeenLocked40Seconds(product))
+                    {  //Lock timed out and can be ignored and set to false
+                        var updateProductLockedStatus = new UpdateProductLockedStatus
+                        {
+                            LockedStatus = false,
+                            LockedStatusID = product.ProductLockedStatus.LockedStatusID,
+                            ProductId = product.ProductId,
+                            UpdateProductLockedTimeStamp = DateTime.Now.Ticks
+                        };
+
+                        await _endpointInstancePriority.Publish(updateProductLockedStatus).ConfigureAwait(false);
+                    }
+                }
+                int tmpQueueLenghtForProduct = 0;
+                if (ProductIdAlreadyInQueue(queueLengthForEachProduct, product.ProductId.ToString()))
+                {
+                    tmpQueueLenghtForProduct = queueLengthForEachProduct.FirstOrDefault(k => k.Key == product.ProductId.ToString()).Value;
+                };
+
+                list.Add(new ProductRead(product.ProductId)
+                {
+                    ProductId = product.ProductId,
+                    Name = product.Name,
+                    ModifiedDate = product.ModifiedDate,
+                    UserIdentifier = product.UserIdentifier,
+                    Locked = product.Locked,
+                    Online = product.Online,
+                    QueueLength = tmpQueueLenghtForProduct
+                });
+            }
+            return list;
         }
 
         // GET api/Product/5
+        [EnableCors("AllowAllOrigins")]
         [HttpGet("{id}")]
-        public ProductRead GetProduct(long id)
+     //  public ProductRead GetProduct(long id)
+        public async Task<ProductRead> GetProduct(long id)
         {
-            return _dataAccessRead.GetProduct(id);
+            var product = _dataAccessRead.GetProduct(id);
+            if (product.ProductLockedStatus.Locked)
+            {
+                if (ProductHasBeenLocked40Seconds(product))
+                { //Lock timed out and can be ignored and set to false
+                    var updateProductLockedStatus = new UpdateProductLockedStatus
+                    {
+
+                        LockedStatus = false,
+                        LockedStatusID = product.ProductLockedStatus.LockedStatusID,
+                        ProductId = product.ProductId,
+                        UpdateProductLockedTimeStamp = DateTime.Now.Ticks
+                    };
+                    await _endpointInstancePriority.Publish(updateProductLockedStatus).ConfigureAwait(false);
+                }
+            }
+            // return _dataAccessRead.GetProduct(id);
+            var ProductRead = new ProductRead(product.ProductId)
+            {
+                Class = product.Class,
+                Color = product.Color,
+                DaysToManufacture = product.DaysToManufacture,
+                DiscontinuedDate = product.DiscontinuedDate,
+                FinishedGoodsFlag = product.FinishedGoodsFlag,
+                ListPrice = product.ListPrice,
+                MakeFlag = product.MakeFlag,
+                ModifiedDate = product.ModifiedDate,
+                Name = product.Name,
+                ProductId = product.ProductId,
+                ProductLine = product.ProductLine,
+                ProductModelId = product.ProductModelId,
+                ProductNumber = product.ProductNumber,
+                ProductSubcategoryId = product.ProductSubcategoryId,
+                ReorderPoint = product.ReorderPoint,
+                SafetyStockLevel = product.SafetyStockLevel,
+                SellEndDate = product.SellEndDate,
+                SellStartDate = product.SellStartDate,
+                Size = product.Size,
+                SizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                StandardCost = product.StandardCost,
+                Style = product.Style,
+                UserIdentifier = product.UserIdentifier,
+                Weight = product.Weight,
+                WeightUnitMeasureCode = product.WeightUnitMeasureCode,
+                Locked = product.Locked,
+                Online = product.Online
+            };
+            return ProductRead;
         }
 
         // POST api/Product
@@ -135,10 +305,10 @@ namespace API.Controllers
         // PUT api/Product/5
         [EnableCors("AllowAllOrigins")]
         [HttpPut("/api/Product/{id}")]
-     //   public async Task UpdateProduct([FromBody] ProductRead productRead)
-        public async Task UpdateProduct([Bind("ProductId,Name,ProductNumber,MakeFlag,FinishedGoodsFlag,Color,SafetyStockLevel,ReorderPoint,StandardCost,ListPrice,Size,SizeUnitMeasureCode,WeightUnitMeasureCode,Weight,DaysToManufacture,ProductLine,Class,Style,ProductSubcategoryId,ProductModelId,SellStartDate,SellEndDate,DiscontinuedDate,Rowguid,ModifiedDate,UserIdentifier,ProductLockedStatus,ProductOnlineStatus")] ProductRead productRead) //For Swagger testing.
+        public async Task UpdateProduct([FromBody] ProductRead productRead)
+     //   public async Task UpdateProduct([Bind("ProductId,Name,ProductNumber,MakeFlag,FinishedGoodsFlag,Color,SafetyStockLevel,ReorderPoint,StandardCost,ListPrice,Size,SizeUnitMeasureCode,WeightUnitMeasureCode,Weight,DaysToManufacture,ProductLine,Class,Style,ProductSubcategoryId,ProductModelId,SellStartDate,SellEndDate,DiscontinuedDate,Rowguid,ModifiedDate,UserIdentifier,ProductLockedStatus,ProductOnlineStatus")] ProductRead productRead) //For Swagger testing.
         {
-            var oldProduct = GetProduct(productRead.ProductId);
+            var oldProduct = await GetProduct(productRead.ProductId);
             if (oldProduct == null) return;
 
             var updateProduct = new UpdateProduct

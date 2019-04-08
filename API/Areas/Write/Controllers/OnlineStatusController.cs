@@ -33,8 +33,8 @@ namespace API.Areas.Write.Controllers
 
         [HttpPut("/api/write/Product/online/{id}")]
         [EnableCors("AllowAllOrigins")]
-        //  public async Task UpdateProductLocked(int id, [FromBody] ProductOnlineStatusRead productOnlineStatusRead)
-        public async Task UpdateProductOnline([Bind("ProductID, Online, OnlineTimeStamp, OnlineStatusID")] ProductOnlineStatusRead productOnlineStatusRead)
+        public async Task UpdateProductOnline(int id, [FromBody] ProductOnlineStatusRead productOnlineStatusRead)
+     //   public async Task UpdateProductOnline([Bind("ProductID, Online, OnlineTimeStamp, OnlineStatusID")] ProductOnlineStatusRead productOnlineStatusRead)
         {
             var oldProductOnlineStatus = GetOnlineStatus(productOnlineStatusRead.ProductID);
             if (oldProductOnlineStatus == null) return;

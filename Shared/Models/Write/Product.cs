@@ -60,6 +60,6 @@ namespace Shared.Models.Write
 
       
         public ProductLockedStatus ProductLockedStatus { get; set; }
-        public ProductOnlineStatus ProductOnlineStatusRead { get; set; }
+        public ProductOnlineStatus ProductOnlineStatus { get; set; }
     }
 }

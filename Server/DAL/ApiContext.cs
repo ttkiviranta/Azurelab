@@ -124,7 +124,11 @@ namespace Server.DAL
               entity.HasOne(d => d.ProductLockedStatus)
                  .WithMany(p => p.Product)
                  .HasForeignKey(d => d.ProductId);
-              
+
+              entity.HasOne(d => d.ProductOnlineStatus)
+                .WithMany(p => p.Product)
+                .HasForeignKey(d => d.ProductId);
+
           });
             modelBuilder.Entity<ProductModel>(entity =>
             {
@@ -225,6 +229,17 @@ namespace Server.DAL
                 entity.Property(e => e.Locked).HasColumnName("Locked");
                 entity.Property(e => e.LockedTimeStamp).HasColumnName("LockedTimeStamp");
                 entity.Property(e => e.LockedStatusID).HasColumnName("LockedStatusID");
+
+            });
+
+            modelBuilder.Entity<ProductOnlineStatus>(entity =>
+            {
+                entity.ToTable("ProductOnlineStatuses", "Production");
+
+                entity.Property(e => e.ProductID).HasColumnName("ProductID");
+                entity.Property(e => e.Online).HasColumnName("Online");
+                entity.Property(e => e.OnlineTimeStamp).HasColumnName("OnlineTimeStamp");
+                entity.Property(e => e.OnlineStatusID).HasColumnName("OnlineStatusID");
 
             });
         }

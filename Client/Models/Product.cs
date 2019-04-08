@@ -106,10 +106,15 @@ namespace Client.Models
         [Display(Name = "Modified by")]
         public string UserIdentifier
         {
-            get { return userIdentifier ?? "Timooo"; }
+            get { return userIdentifier ?? "Timo"; }
 
             set { userIdentifier = value; }
         } 
+
+        public bool? Online { get; set; }
+        public bool? Locked { get; set; }
+        public long LockedTimeStamp { get; set;}
+        public int QueueLength { get; set; }
 
         [Display(Name = "Product model")]
         public ProductModel ProductModel { get; set; }
@@ -123,5 +128,7 @@ namespace Client.Models
         [Display(Name = "Weight unit measure code navigation")]
         public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
 
+        public ProductLockedStatus ProductLockedStatus { get; set; }
+        public ProductOnlineStatus ProductOnlineStatus { get; set; }
     }
 }
