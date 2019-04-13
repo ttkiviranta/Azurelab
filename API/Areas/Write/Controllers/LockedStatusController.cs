@@ -40,7 +40,7 @@ namespace API.Areas.Write.Controllers
             if (oldProductLockedStatus == null) return;
             var updateProductLockedStatus = new UpdateProductLockedStatus
             {
-                LockedStatus = productLockedStatusRead.Locked,
+                LockedStatus = true,
                 LockedStatusID = productLockedStatusRead.LockedStatusID,
                 ProductId = productLockedStatusRead.ProductID,
                 UpdateProductLockedTimeStamp = DateTime.Now.Ticks

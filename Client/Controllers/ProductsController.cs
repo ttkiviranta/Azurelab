@@ -21,6 +21,8 @@
         List<ProductCategory> categories;
         List<ProductModel> models;
         List<UnitMeasure> unitmeasures;
+        List<ProductOnlineStatus> productOnlineStatuses;
+        List<ProductLockedStatus> productLockedStatuses;
 
         public ProductsController(IHttpContextAccessor httpContextAccessor)
         {
@@ -63,6 +65,7 @@
             categories = await Utils.Get<List<ProductCategory>>("/api/read/Category", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             models = await Utils.Get<List<ProductModel>>("/api/read/Model", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             unitmeasures = await Utils.Get<List<UnitMeasure>>("/api/read/UnitMeasure", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+          
 
             ViewData["ProductSubcategoryId"] = new SelectList(subcategories, "ProductSubcategoryId", "Name");
             ViewData["ProductModelId"] = new SelectList(models, "ProductModelId", "Name");
@@ -180,10 +183,12 @@
             oldProduct.UserIdentifier = product.UserIdentifier;
             oldProduct.Weight = product.Weight;
             oldProduct.WeightUnitMeasureCode = product.WeightUnitMeasureCode;
+           // oldProduct.LockedStatusId = product.LockedStatusId;
+           // oldProduct.OnlineStatusId = product.OnlineStatusId;
 
             await Utils.Put<Product>("api/Product/" + oldProduct.ProductId, oldProduct, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
 
-            return RedirectToAction("Index", new { id = oldProduct.ProductId + "|pending update" + "|" + product.Name });
+            return RedirectToAction("Index");
         }
 
         // GET: Company/Delete/5
@@ -218,7 +223,7 @@
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             await Utils.Delete<Product>("api/Product/" + id, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
-            return RedirectToAction("Index", new { id = id + "|pending delete" });
+            return RedirectToAction("Index");
         }
 
         private async Task<bool> ProductExists(long id)

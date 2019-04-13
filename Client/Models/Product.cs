@@ -109,12 +109,19 @@ namespace Client.Models
             get { return userIdentifier ?? "Timo"; }
 
             set { userIdentifier = value; }
-        } 
+        }
 
-        public bool? Online { get; set; }
+        [Display(Name = "Status")]
+        public bool Online { get; set; }
+
+        [Display(Name = "Online (X) or Offline ()?")]
+        public string OnlineOrOffline => (this.Online) ? "Offline" : "Online";
+
         public bool? Locked { get; set; }
+
         public long LockedTimeStamp { get; set;}
         public int QueueLength { get; set; }
+        public string Pending { get; set; } //Pending change in database
 
         [Display(Name = "Product model")]
         public ProductModel ProductModel { get; set; }
@@ -128,7 +135,7 @@ namespace Client.Models
         [Display(Name = "Weight unit measure code navigation")]
         public UnitMeasure WeightUnitMeasureCodeNavigation { get; set; }
 
-        public ProductLockedStatus ProductLockedStatus { get; set; }
-        public ProductOnlineStatus ProductOnlineStatus { get; set; }
+        public Guid LockedStatusId { get; set; }
+        public Guid OnlineStatusId { get; set; }
     }
 }

@@ -17,6 +17,10 @@
     </environment>
 </head>
 <body>
+    @if (ViewBag.ApiAddress != null)
+    {
+        <div class="hidden" id="apiAddress">@ViewBag.ApiAddress</div>
+    }
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

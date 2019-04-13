@@ -258,7 +258,9 @@ namespace API.Controllers
                 Weight = product.Weight,
                 WeightUnitMeasureCode = product.WeightUnitMeasureCode,
                 Locked = product.Locked,
-                Online = product.Online
+                Online = product.Online,
+                LockedStatusId= product.ProductLockedStatus.LockedStatusID,
+                OnlineStatusId = product.ProductOnlineStatus.OnlineStatusID
             };
             return ProductRead;
         }
@@ -344,7 +346,7 @@ namespace API.Controllers
             var updateProductLockedStatus = new UpdateProductLockedStatus
             {
                 LockedStatus = true,
-                LockedStatusID = oldProduct.ProductLockedStatus.LockedStatusID,
+                LockedStatusID = productRead.LockedStatusId,
                 ProductId = productRead.ProductId,
                 UpdateProductLockedTimeStamp = DateTime.Now.Ticks
             };
@@ -352,7 +354,7 @@ namespace API.Controllers
             var updateProductOnlineStatus = new UpdateProductOnlineStatus
             {
                 OnlineStatus = false,
-                OnlineStatusID = oldProduct.ProductOnlineStatus.OnlineStatusID,
+                OnlineStatusID = productRead.OnlineStatusId,
                 ProductId = productRead.ProductId,
                 UpdateProductOnlineTimeStamp = DateTime.Now.Ticks
             };

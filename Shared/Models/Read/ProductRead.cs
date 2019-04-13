@@ -48,7 +48,9 @@ namespace Shared.Models.Read
         public DateTime? ModifiedDate { get; set; }
         public string UserIdentifier { get; set; }
         public bool Online { get; set; }
+        public Guid OnlineStatusId { get; set; }
         public bool Locked { get; set; }
+        public Guid LockedStatusId { get; set; }
         public long LockedTimeStamp { get; set; }
         public int QueueLength { get; set; }
 

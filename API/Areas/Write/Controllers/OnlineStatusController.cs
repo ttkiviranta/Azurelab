@@ -40,7 +40,7 @@ namespace API.Areas.Write.Controllers
             if (oldProductOnlineStatus == null) return;
             var updateProductOnlineStatus = new UpdateProductOnlineStatus
             {
-                OnlineStatus = productOnlineStatusRead.Online,
+                OnlineStatus = false,
                 OnlineStatusID = productOnlineStatusRead.OnlineStatusID,
                 ProductId = productOnlineStatusRead.ProductID,
                 UpdateProductOnlineTimeStamp = DateTime.Now.Ticks
