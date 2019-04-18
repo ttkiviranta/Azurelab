@@ -115,7 +115,8 @@ namespace Client.Models
         public bool Online { get; set; }
 
         [Display(Name = "Online (X) or Offline ()?")]
-        public string OnlineOrOffline => (this.Online) ? "Offline" : "Online";
+     //   public string OnlineOrOffline => (this.Online) ? "Offline" : "Online";
+        public string OnlineOrOffline => (this.Online) ? "Online" : "Offline";
 
         public bool? Locked { get; set; }
 

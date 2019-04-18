@@ -34,13 +34,13 @@ namespace API.Areas.Write.Controllers
         [HttpPut("/api/write/Product/locked/{id}")]
         [EnableCors("AllowAllOrigins")]
         public async Task UpdateProductLocked(int id, [FromBody] ProductLockedStatusRead productLockedStatusRead)
-      //  public async Task UpdateProductLocked([Bind("ProductID, Locked, LockedTimeStamp,LockedStatusID") ] ProductLockedStatus productLockedStatusRead)
+    //    public async Task UpdateProductLocked([Bind("ProductID, Locked, LockedTimeStamp,LockedStatusID") ] ProductLockedStatus productLockedStatusRead)
         {
             var oldProductLockedStatus = GetLockedStatus(productLockedStatusRead.ProductID);
             if (oldProductLockedStatus == null) return;
             var updateProductLockedStatus = new UpdateProductLockedStatus
             {
-                LockedStatus = true,
+                LockedStatus = productLockedStatusRead.Locked,
                 LockedStatusID = productLockedStatusRead.LockedStatusID,
                 ProductId = productLockedStatusRead.ProductID,
                 UpdateProductLockedTimeStamp = DateTime.Now.Ticks

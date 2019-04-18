@@ -23,11 +23,11 @@ function clearErrors() {
 };
 
 function convertPrice(s) {
-    return Math.round(s / 10) + "," + Math.round(s % 10);
+    return Math.round(s) + ",00";
 }
 
 let numberOfProducts = 10;
-const oneSecond = 10000; //!!!
+const oneSecond = 1000; //!!!
 let windowStep = 0;
 
 
@@ -44,7 +44,7 @@ function timerJob() {
                 alert('There was an error 400');
             }
             else {
-                //alert('something else other than 200 was returned: ' + xmlhttp.status);
+                alert('something else other than 200 was returned: ' + xmlhttp.status);
             }
         }
     };
@@ -66,7 +66,7 @@ function timerJob2() {
                 alert('There was an error 400');
             }
             else {
-                //alert('something else other than 200 was returned: ' + xmlhttp.status);
+                alert('something else other than 200 was returned: ' + xmlhttp.status);
             }
         }
     };
@@ -80,6 +80,13 @@ function timerJob2() {
 function updateOnline(product) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", localStorage.getItem("apiAddress") + '/api/write/Product/online/' + product.productId, true);
+    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xmlhttp.send(JSON.stringify(product));
+}
+
+function updateLocked(product) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("PUT", localStorage.getItem("apiAddress") + '/api/write/Product/locked/' + product.productId, true);
     xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xmlhttp.send(JSON.stringify(product));
 }
@@ -108,28 +115,22 @@ function updateOnlineOverdrive(products) {
     }
     selectedProduct.online = !selectedProduct.online;
     updateOnline(selectedProduct);
-
-    const onlineSelector = `#${selectedProduct.productId} td:eq(3)`;
-    const onlineSelector2 = `#${selectedProduct.productId + "_2"} td:eq(4)`;
-    const onlineSelector3 = `#${selectedProduct.productId + "_3"}`;
+    const onlineSelector = `#${selectedProduct.productId + "_2"} td:eq(5)`;
+    const pendingSelector = `#${selectedProduct.productId + "_2"} td:eq(6)`;
     if (selectedProduct.online === true) {
         $(onlineSelector).text("Online");
-        $(onlineSelector).removeClass("alert-danger");
-        $(onlineSelector2).text("Online");
-        $(onlineSelector2).removeClass("alert-danger");
-        $(onlineSelector3).text("Online");
-        $(onlineSelector3).removeClass("alert-danger");
+        $(onlineSelector).removeClass("alert-danger");      
+        $(pendingSelector).text("");     
         console.log(selectedProduct.productId + " is Online!");
     }
     else {
         $(onlineSelector).text("Offline");
         $(onlineSelector).addClass("alert-danger");
-        $(onlineSelector2).text("Offline");
-        $(onlineSelector2).addClass("alert-danger");
-        $(onlineSelector3).text("Offline");
-        $(onlineSelector3).addClass("alert-danger");
+        $(pendingSelector).text("Update");      
         console.log(selectedProduct.productId + " is Offline!");
     }
+
+   
 
     if (document.getElementById("All") !== null) {
         doFiltering();
@@ -158,49 +159,29 @@ function updatePriceOverdrive(products) {
     }
 
     const delta = selectedProduct.listPrice / 10;
-    selectedProduct.listPrice = Math.round(selectedProduct.listPrice + delta); //Increase price 10%
+  //  selectedProduct.listPrice = Math.round(selectedProduct.listPrice + delta); //Increase price 10%
+    selectedProduct.listPrice = Math.round(selectedProduct.listPrice + 1); 
     updatePrice(selectedProduct);
-    const priceSelector = `#${selectedProduct.productId} td:eq(2)`;
-    const priceSelector2 = `#${selectedProduct.productId + "_2"} td:eq(2)`;
-    const priceSelector3 = `#${selectedProduct.productId + "_4"}`;
+
+    const priceSelector = `#${selectedProduct.productId + "_2"} td:eq(2)`;
     if (selectedProduct.online === true) {
         $(priceSelector).text(convertPrice(selectedProduct.listPrice));
-        $(priceSelector2).text(convertPrice(selectedProduct.listPrice));
-        $(priceSelector3).text(convertPrice(selectedProduct.listPrice));
     }
     else {
         $(priceSelector).text(convertPrice(selectedProduct.listPrice));
-        $(priceSelector2).text(convertPrice(selectedProduct.listPrice));
-        $(priceSelector3).text(convertPrice(selectedProduct.listPrice));
     }
     setTimeout(timerJob2, oneSecond);
 }
 
 function doFiltering() {
-    let selection = 0;
-    let radiobtn = document.getElementById("All");
-    if (radiobtn.checked === false) {
-        radiobtn = document.getElementById("Online");
-        if (radiobtn.checked === true) {
-            selection = 1;
-        }
-        else {
-            selection = 2;
-        }
-    }
+    
 
     var table = $('#products > tbody');
-    $('tr', table).each(function () {
-        $(this).removeClass("hidden");
-        let td = $('td:eq(0)', $(this)).html();
+  /*  $(table).each(function () {
+        let td = $('td:eq(2)', $(this)).html();
         if (td !== undefined) {
-            td = td.trim();
-        }
-        if (td === "Offline" && selection === 1) {
-            $(this).addClass("hidden");  //Show only Online
-        }
-        if (td === "Online" && selection === 2) {
-            $(this).addClass("hidden"); //Show only Offline
-        }
-    });
+            td = 999;
+        }  
+
+    });*/
 };

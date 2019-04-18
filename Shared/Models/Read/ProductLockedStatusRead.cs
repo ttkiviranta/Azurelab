@@ -12,8 +12,8 @@ namespace Shared.Models.Read
     {
         public ProductLockedStatusRead()
         {
-          //  LockedTimeStamp = DateTime.Now.Ticks;
-            Product = new HashSet<Product>();
+            LockedTimeStamp = DateTime.Now.Ticks;
+          //  Product = new HashSet<Product>();
         }
 
         public ProductLockedStatusRead(long productId)
@@ -26,7 +26,5 @@ namespace Shared.Models.Read
         public bool Locked { get; set; }
         public long LockedTimeStamp { get; set; }
         public Guid LockedStatusID { get; set; }
-
-        public ICollection<Product> Product { get; set; }
     }
 }

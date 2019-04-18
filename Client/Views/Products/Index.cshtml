@@ -41,48 +41,43 @@
     <input onclick="doFiltering()" id="Offline" type="radio" name="status" value="Offline">Offline<br>
     <br />
 </div>
-
-<table class="table" id="products">
-    <thead>
-        <tr>
-            <th>
-                Product Name
-            </th>
-            <th>
-                Number
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                Product Model
-            </th>
-            <th>
-                Subcategory
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Pending
-            </th>
-            <th>
-                Queue
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-
-
-
-    <tbody>
-        @for (var i = 0; i < Model.Products.Count; i++)
-        {
-            var queueLength = Model.Products[i].QueueLength.ToString();
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.HiddenFor(model => model.Products[i].ProductId)
-                </td>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Product Model
+                </th>
+                <th>
+                    Subcategory
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Pending
+                </th>
+               
+                <th></th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @for (var i = 0; i < Model.Products.Count; i++)
+            {
+                var iidd = Model.Products[i].ProductId + "_2";
+            <tr id="@iidd">
                 <td>
                     @Html.DisplayFor(model => model.Products[i].Name)
                 </td>
@@ -144,16 +139,13 @@
 
                 }
 
-                <td>
+                @{ var cl = Model.Products[i].Online ? "" : "alert-danger";}
+                <td class="@cl">
                     @Html.DisplayFor(model => model.Products[i].OnlineOrOffline)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.Products[i].Pending)
                 </td>
-                <td>
-                    @queueLength
-                </td>
-
                 <td>
                     <a href="/Products/Edit/@Model.Products[i].ProductId">Edit</a> @Html.Raw("|")
                     <a href="/Products/Details/@Model.Products[i].ProductId">Details</a> @Html.Raw("|")
@@ -161,7 +153,7 @@
                 </td>
 
             </tr>
-        }
-    </tbody>
-</table>
-
+            }
+        </tbody>
+    </table>
+</div>

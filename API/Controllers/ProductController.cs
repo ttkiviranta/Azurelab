@@ -57,7 +57,7 @@ namespace API.Controllers
 
         private static bool ProductHasBeenLocked40Seconds(ProductRead product)
         {
-            return new DateTime(product.LockedTimeStamp).AddMilliseconds(40000) < DateTime.Now;
+            return new DateTime(product.ProductLockedStatus.LockedTimeStamp).AddMilliseconds(40000) < DateTime.Now;
         }
 
         // GET api/Product
@@ -68,6 +68,8 @@ namespace API.Controllers
         {
             var list = new List<ProductRead>();
             var products = _dataAccessRead.GetProducts();
+            Dictionary<string, int> queueLengthForEachProduct = await GetQueueLenghtForEachProduct();
+
             foreach (var product in products)
             {
                 if (product.ProductLockedStatus.Locked)
@@ -84,6 +86,13 @@ namespace API.Controllers
                         await _endpointInstancePriority.Publish(updateProductLockedStatus).ConfigureAwait(false);
                     }
                 }
+
+                int tmpQueueLenghtForProduct = 0;
+                if (ProductIdAlreadyInQueue(queueLengthForEachProduct, product.ProductId.ToString()))
+                {
+                    tmpQueueLenghtForProduct = queueLengthForEachProduct.FirstOrDefault(k => k.Key == product.ProductId.ToString()).Value;
+                };
+
                 list.Add(new ProductRead(product.ProductId)
                 {
                     Class = product.Class,
@@ -111,8 +120,11 @@ namespace API.Controllers
                     UserIdentifier = product.UserIdentifier,
                     Weight = product.Weight,
                     WeightUnitMeasureCode = product.WeightUnitMeasureCode,
-                    Locked = product.Locked,
-                    Online = product.Online
+                    Locked = product.ProductLockedStatus.Locked,
+                    Online = product.ProductOnlineStatus.Online,
+                    LockedStatusId = product.ProductLockedStatus.LockedStatusID,
+                    OnlineStatusId = product.ProductOnlineStatus.OnlineStatusID,
+                    QueueLength = tmpQueueLenghtForProduct
                 });
             }
             return list;
@@ -260,7 +272,8 @@ namespace API.Controllers
                 Locked = product.Locked,
                 Online = product.Online,
                 LockedStatusId= product.ProductLockedStatus.LockedStatusID,
-                OnlineStatusId = product.ProductOnlineStatus.OnlineStatusID
+                OnlineStatusId = product.ProductOnlineStatus.OnlineStatusID,
+                
             };
             return ProductRead;
         }
