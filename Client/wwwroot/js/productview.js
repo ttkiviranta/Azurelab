@@ -174,14 +174,31 @@ function updatePriceOverdrive(products) {
 }
 
 function doFiltering() {
-    
+
+    let selection = 0;
+    let radiobtn = document.getElementById("All");
+    if (radiobtn.checked === false) {
+        radiobtn = document.getElementById("Online");
+        if (radiobtn.checked === true) {
+            selection = 1;
+        }
+        else {
+            selection = 2;
+        }
+    }
 
     var table = $('#products > tbody');
-  /*  $(table).each(function () {
-        let td = $('td:eq(2)', $(this)).html();
+    $('tr', table).each(function () {
+        $(this).removeClass("hidden");
+        let td = $('td:eq(5)', $(this)).html();
         if (td !== undefined) {
-            td = 999;
-        }  
-
-    });*/
-};
+            td = td.trim();
+        }
+        if (td === "Offline" && selection === 1) {
+            $(this).addClass("hidden");  //Show only Online
+        }
+        if (td === "Online" && selection === 2) {
+            $(this).addClass("hidden"); //Show only Offline
+        }
+    });
+}

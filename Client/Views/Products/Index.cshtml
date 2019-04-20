@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../js/productview.js"></script>
@@ -43,7 +43,7 @@
 </div>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="row">
-    <table class="table">
+    <table id="products" class="table" >
         <thead>
             <tr>
                 <th>
@@ -67,92 +67,95 @@
                 <th>
                     Pending
                 </th>
-               
+
                 <th></th>
             </tr>
         </thead>
 
 
         <tbody>
+            
             @for (var i = 0; i < Model.Products.Count; i++)
             {
+                
                 var iidd = Model.Products[i].ProductId + "_2";
-            <tr id="@iidd">
-                <td>
-                    @Html.DisplayFor(model => model.Products[i].Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.Products[i].ProductNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.Products[i].ListPrice)
-                </td>
-
-
-                @if (@Model.Products[i].ProductModelId != null)
-                {
-
-                    @for (var j = 0; j < Model.ProductModels.Count; j++)
-                    {
-
-                        if (@Model.Products[i].ProductModelId == @Model.ProductModels[j].ProductModelId)
-                        {
-                            <td>
-                                @Html.DisplayFor(model => model.ProductModels[j].Name)
-                            </td>
-                        }
-                    }
-                }
-
-
-                @if (@Model.Products[i].ProductModelId == null)
-                {
+                <tr id="@iidd" class="">
 
                     <td>
-                        @Html.DisplayFor(model => model.Products[i].ProductModelId)
+                        @Html.DisplayFor(model => model.Products[i].Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Products[i].ProductNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Products[i].ListPrice)
                     </td>
 
-                }
 
-
-                @if (@Model.Products[i].ProductSubcategoryId != null)
-                {
-
-                    @for (var j = 0; j < Model.ProductSubcategories.Count; j++)
+                    @if (@Model.Products[i].ProductModelId != null)
                     {
 
-                        if (@Model.Products[i].ProductSubcategoryId == @Model.ProductSubcategories[j].ProductSubcategoryId)
+                        @for (var j = 0; j < Model.ProductModels.Count; j++)
                         {
-                            <td>
-                                @Html.DisplayFor(model => model.ProductSubcategories[j].Name)
-                            </td>
+
+                            if (@Model.Products[i].ProductModelId == @Model.ProductModels[j].ProductModelId)
+                            {
+                                <td>
+                                    @Html.DisplayFor(model => model.ProductModels[j].Name)
+                                </td>
+                            }
                         }
                     }
-                }
 
-                @if (@Model.Products[i].ProductSubcategoryId == null)
-                {
 
+                    @if (@Model.Products[i].ProductModelId == null)
+                    {
+
+                        <td>
+                            @Html.DisplayFor(model => model.Products[i].ProductModelId)
+                        </td>
+
+                    }
+
+
+                    @if (@Model.Products[i].ProductSubcategoryId != null)
+                    {
+
+                        @for (var j = 0; j < Model.ProductSubcategories.Count; j++)
+                        {
+
+                            if (@Model.Products[i].ProductSubcategoryId == @Model.ProductSubcategories[j].ProductSubcategoryId)
+                            {
+                                <td>
+                                    @Html.DisplayFor(model => model.ProductSubcategories[j].Name)
+                                </td>
+                            }
+                        }
+                    }
+
+                    @if (@Model.Products[i].ProductSubcategoryId == null)
+                    {
+
+                        <td>
+                            @Html.DisplayFor(model => model.Products[i].ProductSubcategoryId)
+                        </td>
+
+                    }
+
+                    @{ var cl = Model.Products[i].Online ? "" : "alert-danger";}
+                    <td class="@cl">
+                        @Html.DisplayFor(model => model.Products[i].OnlineOrOffline)
+                    </td>
                     <td>
-                        @Html.DisplayFor(model => model.Products[i].ProductSubcategoryId)
+                        @Html.DisplayFor(model => model.Products[i].Pending)
+                    </td>
+                    <td>
+                        <a href="/Products/Edit/@Model.Products[i].ProductId">Edit</a> @Html.Raw("|")
+                        <a href="/Products/Details/@Model.Products[i].ProductId">Details</a> @Html.Raw("|")
+                        <a href="/Products/Delete/@Model.Products[i].ProductId">Delete</a>
                     </td>
 
-                }
-
-                @{ var cl = Model.Products[i].Online ? "" : "alert-danger";}
-                <td class="@cl">
-                    @Html.DisplayFor(model => model.Products[i].OnlineOrOffline)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.Products[i].Pending)
-                </td>
-                <td>
-                    <a href="/Products/Edit/@Model.Products[i].ProductId">Edit</a> @Html.Raw("|")
-                    <a href="/Products/Details/@Model.Products[i].ProductId">Details</a> @Html.Raw("|")
-                    <a href="/Products/Delete/@Model.Products[i].ProductId">Delete</a>
-                </td>
-
-            </tr>
+                </tr>
             }
         </tbody>
     </table>

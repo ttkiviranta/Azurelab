@@ -20,9 +20,15 @@
         List<ProductSubcategory> subcategories;
         List<ProductCategory> categories;
         List<ProductModel> models;
+#pragma warning disable CS0169 // The field 'ProductsController.unitmeasures' is never used
         List<UnitMeasure> unitmeasures;
+#pragma warning restore CS0169 // The field 'ProductsController.unitmeasures' is never used
+#pragma warning disable CS0169 // The field 'ProductsController.productOnlineStatuses' is never used
         List<ProductOnlineStatus> productOnlineStatuses;
+#pragma warning restore CS0169 // The field 'ProductsController.productOnlineStatuses' is never used
+#pragma warning disable CS0169 // The field 'ProductsController.productLockedStatuses' is never used
         List<ProductLockedStatus> productLockedStatuses;
+#pragma warning restore CS0169 // The field 'ProductsController.productLockedStatuses' is never used
 
         public ProductsController(IHttpContextAccessor httpContextAccessor)
         {

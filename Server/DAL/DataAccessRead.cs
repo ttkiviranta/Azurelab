@@ -36,7 +36,7 @@ namespace Server.DAL
                    {
                        p.
                    }).FirstOrDefault(p => ;*/
-                var uniqueProductReadNull = context.Product.Include(p => p.ProductModel).Include(p => p.ProductSubcategory).Include(p => p.ProductLockedStatus).Include(p => p.ProductOnlineStatus).OrderBy(p => p.ProductId).ToList();
+                var uniqueProductReadNull = context.Product.Include(p => p.ProductModel).Include(p => p.ProductSubcategory).Include(p => p.ProductLockedStatus).Include(p => p.ProductOnlineStatus).OrderBy(p => p.Name).ToList();
                 foreach (var productReadNull in uniqueProductReadNull)
                 {
  
