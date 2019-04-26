@@ -14,6 +14,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProductId" />
+         
             <div class="form-group">
                 <label asp-for="Name" class="col-md-3 right"></label>
                 <div class="col-md-9">
@@ -34,7 +35,7 @@
                 <div class="col-md-9">
 
                     <input asp-for="MakeFlag" class="form-control" />
-                    
+
 
                 </div>
             </div>
@@ -195,15 +196,31 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn-default" />
+                <input id="saveId" type="submit" value="Save" class="btn-default"/>
             </div>
 
         </form>
     </div>
 </div>
-
+<script type="text/javascript">
+        function unlockProduct() {
+            var xmlhttp = new XMLHttpRequest();
+            var product = {};
+            product.productId = '@Model.ProductId';
+            product.locked = false;
+            var json = JSON.stringify(product);
+            xmlhttp.open("PUT", localStorage.getItem("apiAddress") + "/api/write/Product/locked/" + '@Model.ProductId', true);
+            xmlhttp.withCredentials = false;
+            xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xmlhttp.send(json);
+            window.location.href = '/Products';
+        }
+    
+</script>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <p>
+        <a onclick="unlockProduct()" style="cursor: pointer;">Back to list</a>
+    </p>
 </div>
 
 @section Scripts {

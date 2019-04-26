@@ -50,6 +50,7 @@ function timerJob() {
     };
     if (localStorage.getItem("apiAddress") !== null) {
         xmlhttp.open("GET", localStorage.getItem("apiAddress") + "/api/Product/", true);
+        xmlhttp.withCredentials = false;
         xmlhttp.send();
     }
 }
@@ -73,6 +74,7 @@ function timerJob2() {
 
     if (localStorage.getItem("apiAddress") !== null) {
         xmlhttp.open("GET", localStorage.getItem("apiAddress") + "/api/Product/", true);
+        xmlhttp.withCredentials = false;
         xmlhttp.send();
     }
 }
@@ -80,28 +82,33 @@ function timerJob2() {
 function updateOnline(product) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", localStorage.getItem("apiAddress") + '/api/write/Product/online/' + product.productId, true);
-    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-16');
+    xmlhttp.withCredentials = false;
     xmlhttp.send(JSON.stringify(product));
 }
 
 function updateLocked(product) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", localStorage.getItem("apiAddress") + '/api/write/Product/locked/' + product.productId, true);
-    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-16');
+    xmlhttp.withCredentials = false;
     xmlhttp.send(JSON.stringify(product));
 }
 
 function updatePrice(product) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", localStorage.getItem("apiAddress") + '/api/Product/' + product.productId, true);
-    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-16');
+  //xmlhttp.withCredentials = false;
+    product.userIdentifier = "Lenovo";
+    var test = JSON.stringify(product);
     xmlhttp.send(JSON.stringify(product));
 }
 
 function updateOnlineOverdrive(products) {
     if (products.length === 0) {
         setTimeout(timerJob, oneSecond);
-        console.log("No vehicles found!");
+        console.log("No products found!");
         return;
     }
   //  numberOfProducts = products.length;
@@ -129,11 +136,8 @@ function updateOnlineOverdrive(products) {
         $(pendingSelector).text("Update");      
         console.log(selectedProduct.productId + " is Offline!");
     }
-
-   
-
     if (document.getElementById("All") !== null) {
-        doFiltering();
+        //doFiltering();
     }
     let interval = Math.round(oneSecond / numberOfProducts);
     setTimeout(timerJob, interval);
@@ -161,6 +165,7 @@ function updatePriceOverdrive(products) {
     const delta = selectedProduct.listPrice / 10;
   //  selectedProduct.listPrice = Math.round(selectedProduct.listPrice + delta); //Increase price 10%
     selectedProduct.listPrice = Math.round(selectedProduct.listPrice + 1); 
+    
     updatePrice(selectedProduct);
 
     const priceSelector = `#${selectedProduct.productId + "_2"} td:eq(2)`;

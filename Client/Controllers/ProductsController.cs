@@ -79,7 +79,8 @@
             ViewData["WeightUnitMeasureCode"] = new SelectList(unitmeasures, "UnitMeasureCode", "Name");
 
             var productViewModel = new ProductViewModel { Product = product, ProductSubcategories = subcategories, ProductCategories = categories, ProductModels = models };
-            return View(productViewModel);          
+            return View(productViewModel);  
+          
         }
 
         // GET: Product/Create
@@ -113,7 +114,7 @@
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Name,ProductNumber,MakeFlag,FinishedGoodsFlag,Color,SafetyStockLevel,ReorderPoint,StandardCost,ListPrice,Size,SizeUnitMeasureCode,WeightUnitMeasureCode,Weight,DaysToManufacture,ProductLine,Class,Style,ProductSubcategoryId,ProductModelId,SellStartDate,SellEndDate,DiscontinuedDate,Rowguid,ModifiedDate,UserIdentifier")] ProductInsert product)
+        public async Task<IActionResult> Create([Bind("ProductId,Name,ProductNumber,MakeFlag,FinishedGoodsFlag,Color,SafetyStockLevel,ReorderPoint,StandardCost,ListPrice,Size,SizeUnitMeasureCode,WeightUnitMeasureCode,Weight,DaysToManufacture,ProductLine,Class,Style,ProductSubcategoryId,ProductModelId,SellStartDate,SellEndDate,DiscontinuedDate,Rowguid,ModifiedDate,UserIdentifier, OldOnline")] ProductInsert product)
         {
             if (!ModelState.IsValid) return View(product);   
             product.ProductId = -1;
@@ -126,7 +127,7 @@
         public async Task<IActionResult> Edit(long? id)
         {
             ViewBag.ApiAddress = _httpContextAccessor.HttpContext.Session.GetString("ApiAddress");
-
+            
             List<ProductSubcategory> subcategories;
             List<ProductCategory> categories;
             List<ProductModel> models;
@@ -135,7 +136,15 @@
 
             var product = await Utils.Get<Product>("api/Product/" + id, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
 
-            subcategories = await Utils.Get<List<ProductSubcategory>>("/api/read/Subcategory", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+            if (product.Locked)
+            {
+                return RedirectToAction("index", new { id = product.ProductId + "," + product.Name + "," + product.ProductNumber + "," + product.ListPrice + "," + product.ProductModel + "," + product.ProductSubcategory + ",Offline" + ",pending edit" });
+            }
+
+            product.Locked = true;
+            await Utils.Put<Product>("api/write/Product/locked/" + id, product, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+
+            /*subcategories = await Utils.Get<List<ProductSubcategory>>("/api/read/Subcategory", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             ViewData["ProductSubcategoryId"] = new SelectList(subcategories, "ProductSubcategoryId", "Name");
 
             categories = await Utils.Get<List<ProductCategory>>("/api/read/Category", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
@@ -149,7 +158,8 @@
             unitmeasures = await Utils.Get<List<UnitMeasure>>("/api/read/Model", _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
             ViewData["WeightUnitMeasureCode"] = new SelectList(unitmeasures, "UnitMeasureCode", "Name");
 
-            //var productViewModel = new ProductViewModel { Product = product, ProductSubcategories = subcategories, ProductCategories = categories, ProductModels = models };
+            var productViewModel = new ProductViewModel { Product = product, ProductSubcategories = subcategories, ProductCategories = categories, ProductModels = models };*/
+           // return View(productViewModel);
             return View(product);
 
         }
@@ -163,7 +173,11 @@
         {
             if (!ModelState.IsValid) return View(product);
             var oldProduct = await Utils.Get<Product>("api/Product/" + productId, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
-
+      /*      if (oldProduct.Locked)
+            {
+                return RedirectToAction("index", new { id = oldProduct.ProductId + "," + oldProduct.Name + "," + oldProduct.ProductNumber + "," + oldProduct.ListPrice + "," + oldProduct.ProductModel + "," + product.ProductSubcategory + ",Offline" + ",pending timeout" });
+            }*/
+           
             oldProduct.Name = product.Name;
             oldProduct.ProductNumber = product.ProductNumber;
             oldProduct.Rowguid = product.Rowguid;
@@ -193,8 +207,10 @@
            // oldProduct.OnlineStatusId = product.OnlineStatusId;
 
             await Utils.Put<Product>("api/Product/" + oldProduct.ProductId, oldProduct, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
+            return RedirectToAction(nameof(Index));
 
-            return RedirectToAction("Index");
+            //   return View();
+            //  return RedirectToAction("Index", new  { id = oldroduct.ProductId + "," + product.Name + "," + product.ProductNumber + "," + product.ListPrice + "," + product.ProductModel + "," + product.ProductSubcategory + ",Offline" + ",pending update" });
         }
 
         // GET: Company/Delete/5

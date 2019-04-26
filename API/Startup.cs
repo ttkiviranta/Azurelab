@@ -51,7 +51,8 @@ namespace API
                 options.AddPolicy("AllowAllOrigins",
                     builder =>
                     {
-                        builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+                        builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials();
+                      
                     });
             });
         }
@@ -76,9 +77,11 @@ namespace API
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseCors("AllowAllOrigins");
+
             app.UseMvc();
 
-            app.UseCors("AllowAllOrigins");
+           
         }
     }
 }

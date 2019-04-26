@@ -31,9 +31,9 @@ namespace Client
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-       //     var task = ConfigureServicesAsync(services);
+       /*     var task = ConfigureServicesAsync(services);
 
-       //     task.Wait();
+            task.Wait();*/
         }
 
      /*   public async Task ConfigureServicesAsync(IServiceCollection services)

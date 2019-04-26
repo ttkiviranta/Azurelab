@@ -118,7 +118,7 @@ namespace Client.Models
      //   public string OnlineOrOffline => (this.Online) ? "Offline" : "Online";
         public string OnlineOrOffline => (this.Online) ? "Online" : "Offline";
 
-        public bool? Locked { get; set; }
+        public bool Locked { get; set; }
 
         public long LockedTimeStamp { get; set;}
         public int QueueLength { get; set; }
@@ -138,5 +138,6 @@ namespace Client.Models
 
         public Guid LockedStatusId { get; set; }
         public Guid OnlineStatusId { get; set; }
+      //  public bool OldOnline { get; set; }
     }
 }

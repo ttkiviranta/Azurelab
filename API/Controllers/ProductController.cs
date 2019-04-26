@@ -83,7 +83,17 @@ namespace API.Controllers
                             ProductId = product.ProductId,
                             UpdateProductLockedTimeStamp = DateTime.Now.Ticks
                         };
+
+                        var updateProductOnlineStatus = new UpdateProductOnlineStatus //??
+                        {
+                            OnlineStatus = true,
+                            OnlineStatusID = product.ProductOnlineStatus.OnlineStatusID,
+                            ProductId = product.ProductId,
+                            UpdateProductOnlineTimeStamp = DateTime.Now.Ticks
+                        };
+
                         await _endpointInstancePriority.Publish(updateProductLockedStatus).ConfigureAwait(false);
+                        await _endpointInstance.Send(Helpers.ServerEndpoint, updateProductOnlineStatus).ConfigureAwait(false);
                     }
                 }
 
@@ -195,8 +205,9 @@ namespace API.Controllers
                             ProductId = product.ProductId,
                             UpdateProductLockedTimeStamp = DateTime.Now.Ticks
                         };
-
+                     
                         await _endpointInstancePriority.Publish(updateProductLockedStatus).ConfigureAwait(false);
+                                             
                     }
                 }
                 int tmpQueueLenghtForProduct = 0;
