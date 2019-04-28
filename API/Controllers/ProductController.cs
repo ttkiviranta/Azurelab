@@ -324,7 +324,27 @@ namespace API.Controllers
                 Weight = productInsert.Weight,
                 WeightUnitMeasureCode = productInsert.WeightUnitMeasureCode
             };
+
+            var createProductLockedStatus = new CreateProductLockedStatus
+            {
+                LockedStatus = true,
+                LockedStatusID = Guid.NewGuid(),
+                ProductId = productInsert.ProductId,
+                CreateProductLockedTimeStamp = DateTime.Now.Ticks
+            };
+
+            var createProductOnlineStatus = new CreateProductOnlineStatus
+            {
+                OnlineStatus = false,
+                OnlineStatusID = Guid.NewGuid(),
+                ProductId = productInsert.ProductId,
+                CreateProductOnlineTimeStamp = DateTime.Now.Ticks
+            };
+
             await _endpointInstance.Send(Helpers.ServerEndpoint, createProduct).ConfigureAwait(false);
+            await _endpointInstance.Send(Helpers.ServerEndpoint, createProductOnlineStatus).ConfigureAwait(false);
+            await _endpointInstance.Send(Helpers.ServerEndpoint, createProductLockedStatus).ConfigureAwait(false);
+           
 
         }
 
@@ -400,8 +420,21 @@ namespace API.Controllers
             {
                 ProductId = productId
             };
+
+            var deleteProductOnlineStatus = new DeleteProductOnlineStatus
+            {
+                ProductId = productId
+            };
+
+            var deleteProductLockedStatus = new DeleteProductLockedStatus
+            {
+                ProductId = productId
+            };
+
             await _endpointInstance.Send(Helpers.ServerEndpoint, deleteProduct).ConfigureAwait(false);
-        }
+            await _endpointInstance.Send(Helpers.ServerEndpoint, deleteProductLockedStatus).ConfigureAwait(false);
+            await _endpointInstance.Send(Helpers.ServerEndpoint, deleteProductOnlineStatus).ConfigureAwait(false);
+        }   
     }
 
 }

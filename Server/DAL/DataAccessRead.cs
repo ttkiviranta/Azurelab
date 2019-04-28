@@ -18,7 +18,6 @@ namespace Server.DAL
         public DataAccessRead(IConfiguration configuration)
         {
             Configuration = configuration;
-            //_optionsBuilder.UseSqlite("DataSource=" + Helpers.GetDbLocation(Configuration["AppSettings:DbLocation"]) + "Car.db");
             _optionsBuilder.UseSqlServer(Helpers.GetSqlConnection());
         }
         

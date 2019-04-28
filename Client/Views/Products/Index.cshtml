@@ -206,6 +206,18 @@
             // Draw once all updates are done
             table.draw();
 
+            $('#products tbody').on('click', 'tr', function () {
+                var d = table.row(this).data();
+
+                d.counter++;
+
+                table
+                    .row(this)
+                    .data(d)
+                    .draw();
+            });
+
+
             $('.customRadioButton').change(function () {
                 table.destroy();
                 table = $('#products').DataTable();

@@ -43,7 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Messages\Commands\CreateProduct.cs" />
+    <Compile Include="Messages\Commands\CreateProductLockedStatus.cs" />
+    <Compile Include="Messages\Commands\CreateProductOnlineStatus.cs" />
     <Compile Include="Messages\Commands\DeleteProduct.cs" />
+    <Compile Include="Messages\Commands\DeleteProductLockedStatus.cs" />
+    <Compile Include="Messages\Commands\DeleteProductOnlineStatus.cs" />
     <Compile Include="Messages\Commands\UpdateProduct.cs" />
     <Compile Include="Messages\Commands\UpdateProductOnlineStatus.cs" />
     <Compile Include="Messages\Events\ClearDatabase.cs" />

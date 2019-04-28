@@ -22,6 +22,7 @@ namespace API.Areas.Write.Controllers
         readonly IEndpointInstance _endpointInstance;
         readonly IEndpointInstance _endpointInstancePriority;
         readonly ProductOnlineStatusDataAccess _productOnlineStatusDataAccess;
+       
 
         public OnlineStatusController(IEndpointInstance endpointInstance, IEndpointInstance endpointInstancePriority, IConfiguration configuration)
         {
@@ -50,11 +51,33 @@ namespace API.Areas.Write.Controllers
             await _endpointInstance.Send(Helpers.ServerEndpoint, updateProductOnlineStatus).ConfigureAwait(false);
         }
 
-        // DELETE: api/ApiWithActions/5
-        /*    [HttpDelete("{id}")]
-            public void Delete(int id)
+        [HttpPost]
+        [EnableCors("AllowAllOrigins")]
+        public async Task AddProductOnline(int id, [FromBody] ProductOnlineStatus productOnlineStatus)
+      //  public async Task AddProductOnline([Bind("ProductID, Online, OnlineTimeStamp, OnlineStatusID")] ProductOnlineStatus productOnlineStatus)
+        {
+            var createProductOnlineStatus = new CreateProductOnlineStatus
             {
-            }*/
+                OnlineStatus = productOnlineStatus.Online,
+                OnlineStatusID = Guid.NewGuid(),
+                ProductId = productOnlineStatus.ProductID,
+                CreateProductOnlineTimeStamp = DateTime.Now.Ticks
+            };
+            await _endpointInstance.Send(Helpers.ServerEndpoint, createProductOnlineStatus).ConfigureAwait(false);
+        }
+
+        // DELETE api/Product/5
+        [HttpDelete("{id}")]
+        public async Task DeleteProductOnlineStatus(long id)
+        {
+            if (GetOnlineStatus(id) == null) return;
+            var productId = id;
+            var deleteProductOnlineStatus = new DeleteProductOnlineStatus
+            {
+                ProductId = productId
+            };
+            await _endpointInstance.Send(Helpers.ServerEndpoint, deleteProductOnlineStatus).ConfigureAwait(false);
+        }
 
         ProductOnlineStatus GetOnlineStatus(long id)
         {

@@ -117,7 +117,7 @@
         public async Task<IActionResult> Create([Bind("ProductId,Name,ProductNumber,MakeFlag,FinishedGoodsFlag,Color,SafetyStockLevel,ReorderPoint,StandardCost,ListPrice,Size,SizeUnitMeasureCode,WeightUnitMeasureCode,Weight,DaysToManufacture,ProductLine,Class,Style,ProductSubcategoryId,ProductModelId,SellStartDate,SellEndDate,DiscontinuedDate,Rowguid,ModifiedDate,UserIdentifier, OldOnline")] ProductInsert product)
         {
             if (!ModelState.IsValid) return View(product);   
-            product.ProductId = -1;
+            product.ProductId = DateTime.Now.Ticks;
             await Utils.Post<ProductInsert>("api/Product/" , product, _httpContextAccessor.HttpContext.Session.GetString("ApiAddress"));
 
             return RedirectToAction("Index", new { id = product.ProductId + "|pending create" + "|" + product.Name });

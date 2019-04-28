@@ -37,8 +37,12 @@ namespace Server
             builder.RegisterType<CreateProductHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
             builder.RegisterType<UpdateProductHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
             builder.RegisterType<DeleteProductHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+            builder.RegisterType<CreateProductOnlineHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
             builder.RegisterType<UpdateProductOnlineHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
-            builder.RegisterType<UpdateProductLockedStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);            
+            builder.RegisterType<DeleteProductOnlineHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+            builder.RegisterType<CreateProductLockedHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+            builder.RegisterType<UpdateProductLockedStatusHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
+            builder.RegisterType<DeleteProductLockedHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder);
             builder.RegisterType<ClearDatabaseHandler>().AsSelf().WithParameter("dbContextOptionsBuilder", dbContextOptionsBuilder); 
             Container = builder.Build();
         //    Services.AddMvc(); //Tarviiko???

@@ -89,12 +89,12 @@ namespace Server.CommandHandlers
             var userIdentifierParam = new SqlParameter("@UserIdentifierParam", SqlDbType.NVarChar);
             var productId = DateTime.Now.ToString("yyyyMMddhhmmss").ToString();
 
-            long productID;
-            var time = DateTime.Now.ToString("yyyyMMddhhmmss").ToString();
+   //         long productID;
+   //         var time = DateTime.Now.ToString("yyyyMMddhhmmss").ToString();
             //  var rowGuid = Guid.NewGuid().ToString();
-            long.TryParse(time, out productID);
+   //         long.TryParse(time, out productID);
 
-            productIdParam.Value = productId; //product.ProductId;
+            productIdParam.Value = product.ProductId; 
             nameParam.Value = product.Name;
             productNumberParam.Value = product.ProductNumber;
             makeFlagParam.Value = product.MakeFlag;
