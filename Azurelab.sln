@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{4E8FB704-7B0E-4037-AE05-1656F1764A93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientVUE", "ClientVUE\ClientVUE.csproj", "{B227B326-5621-49EF-8BD9-F6F9F82EAC9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientVUE", "ClientVUE\ClientVUE.csproj", "{B227B326-5621-49EF-8BD9-F6F9F82EAC9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

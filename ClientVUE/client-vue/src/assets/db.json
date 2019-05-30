@@ -1,22 +1,49 @@
 {
   "blogposts": [
     {
-      "title": "My first blogpost ever!",
-      "body": "Lorem ipsum dolor sit amet.",
-      "author": "Elke",
-      "datePosted": "2019-01-18"
+      "id": 1,
+      "first_name": "Fred",
+      "last_name": "Flintstone"
     },
     {
-      "title": "Look I am blogging!",
-      "body": "Hurray for me, this is my second post!",
-      "author": "Elke",
-      "datePosted": "2019-01-19"
+      "id": 2,
+      "first_name": "Wilma",
+      "last_name": "Flintstone"
     },
     {
-      "title": "Another one?!",
-      "body": "Another one!",
-      "author": "Elke",
-      "datePosted": "2019-01-20"
+      "id": 3,
+      "first_name": "Barney",
+      "last_name": "Rubble"
+    },
+    {
+      "id": 4,
+      "first_name": "Betty",
+      "last_name": "Rubble"
+    },
+    {
+      "id": 5,
+      "first_name": "Pebbles",
+      "last_name": "Flintstone"
+    },
+    {
+      "id": 6,
+      "first_name": "Bamm Bamm",
+      "last_name": "Rubble"
+    },
+    {
+      "id": 7,
+      "first_name": "The Great",
+      "last_name": "Gazzoo"
+    },
+    {
+      "id": 8,
+      "first_name": "Mr",
+      "last_name": "Slate"
+    },
+    {
+      "id": 9,
+      "first_name": "Pearl",
+      "last_name": "Slaghoople"
     }
   ]
 }
